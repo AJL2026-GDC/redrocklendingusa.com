@@ -312,7 +312,11 @@ footer .legal .eho svg{width:22px;height:22px}
       <p>Prefer to talk? <a href="tel:+13214465410" style="color:var(--ink);font-weight:600">321-446-5410</a></p>
     </div>
     <div>
-      <form id="lead" onsubmit="event.preventDefault();this.style.display='none';document.getElementById('thanks').style.display='block'">
+      <form id="lead" action="https://formsubmit.co/victoria.ralicki@redrocklendingusa.com" method="POST">
+        <input type="hidden" name="_subject" value="New website inquiry — redrocklendingusa.com">
+        <input type="hidden" name="_next" value="https://redrocklendingusa.com/?sent=1#contact">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div><label for="fn">First name</label><input id="fn" name="firstname" autocomplete="given-name" required></div>
         <div><label for="ln">Last name</label><input id="ln" name="lastname" autocomplete="family-name" required></div>
         <div><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required></div>
@@ -334,6 +338,9 @@ footer .legal .eho svg{width:22px;height:22px}
 </section>
 
 </main>
+<script>
+if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t=document.getElementById('thanks');if(f&&t){f.style.display='none';t.style.display='block';}}
+</script>
 
 <footer>
   <div class="wrap">
