@@ -37,15 +37,15 @@ p{margin:0 0 1em;max-width:62ch}
 
 /* header */
 header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
-.nav img{height:60px;width:auto;display:block}
+.nav{display:flex;align-items:center;justify-content:space-between;height:104px;gap:24px}
+.nav img{height:76px;width:auto;display:block}
 .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px;font-weight:500}
 .nav ul a{text-decoration:none;color:var(--slate)}
 .nav ul a:hover{color:var(--ink)}
 .nav .btn{padding:11px 18px}
 .menu{display:none;background:none;border:0;font:inherit;font-weight:600;cursor:pointer}
 @media (max-width:860px){
-  .nav ul{display:none;position:absolute;left:0;right:0;top:88px;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--rule)}
+  .nav ul{display:none;position:absolute;left:0;right:0;top:104px;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--rule)}
   .nav ul.open{display:flex}
   .nav ul li{padding:14px var(--gutter);border-top:1px solid var(--rule)}
   .nav .btn{display:none}.menu{display:block}
@@ -69,13 +69,13 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdro
 .sheet{border-top:3px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr)}
 .sheet .col{border-right:1px solid var(--rule);padding:28px 24px 32px 0;margin-right:24px}
 .sheet .col:last-child{border-right:0;margin-right:0}
-.sheet .col h3{padding-bottom:14px;border-bottom:1px solid var(--rule-strong);margin-bottom:6px}
-.sheet .col h3 small{display:block;font-size:15px;font-weight:400;color:var(--grey);margin-top:6px}
+.sheet .col h3{padding-bottom:14px;border-bottom:3px solid var(--red);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;font-size:clamp(22px,2.2vw,28px);font-variation-settings:"wdth" 100}
+.sheet .col h3 small{display:block;font-size:15px;font-weight:400;color:var(--grey);margin-top:8px;text-transform:none;letter-spacing:0}
 .sheet dl{margin:0}
 .sheet dt{font-weight:600;padding-top:16px}
 .sheet dd{margin:4px 0 14px;color:var(--slate);font-size:15.5px;line-height:1.5;padding-bottom:14px;border-bottom:1px solid var(--rule)}
 .sheet dd:last-child{border-bottom:0}
-.sheet .lead dt{color:var(--red)}
+
 @media (max-width:900px){.sheet{grid-template-columns:1fr}.sheet .col{border-right:0;margin-right:0;padding-right:0;border-bottom:3px solid var(--ink)}.sheet .col:last-child{border-bottom:0}}
 .sheet-foot{margin-top:28px;color:var(--grey);font-size:14.5px;max-width:80ch}
 
@@ -188,13 +188,12 @@ footer .legal .eho svg{width:22px;height:22px}
       <p>Three books of business, one phone number. Every program below is placed through lending partners we've vetted, so the paperwork you see is the paperwork that closes.</p>
     </div>
     <div class="sheet">
-      <div class="col lead">
+      <div class="col">
         <h3>Investment<small>For landlords, builders and buy-and-hold investors</small></h3>
         <dl>
           <dt>Rental / DSCR</dt><dd>Qualify on the property's rent, not your tax returns. The cleanest path for investors adding doors in Florida.</dd>
           <dt>Bridge</dt><dd>Short-term capital to close fast and refinance later. Purchase or cash-out.</dd>
           <dt>Construction hard money</dt><dd>Ground-up or heavy rehab for build-to-rent and build-to-sell. Draws tied to progress.</dd>
-          <dt>Commercial hard money</dt><dd>Asset-based financing when the timeline or the file doesn't fit a bank.</dd>
         </dl>
       </div>
       <div class="col">
@@ -204,6 +203,8 @@ footer .legal .eho svg{width:22px;height:22px}
           <dt>Office and retail</dt><dd>Stabilized and transitional properties, including mixed-use.</dd>
           <dt>Warehouse and industrial</dt><dd>Flex, distribution and light manufacturing space.</dd>
           <dt>Self-storage and mixed-use</dt><dd>Specialty assets that generalist lenders pass on.</dd>
+          <dt>Land</dt><dd>Entitled and development land, placed with the commercial and hard-money lenders who actually fund it.</dd>
+          <dt>Commercial hard money</dt><dd>Asset-based financing when the timeline or the file doesn't fit a bank.</dd>
         </dl>
       </div>
       <div class="col">
