@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Red Rock Lending</title>
+<meta name="description" content="Red Rock Lending is a Central Florida lending firm serving investors, developers and homebuyers — bridge, DSCR, construction, commercial and residential financing under one roof.">
+<meta property="og:title" content="Red Rock Lending — one lender for every real estate need">
+<meta property="og:description" content="Investment, commercial and residential financing from one Orlando-based team.">
+<meta property="og:image" content="assets/og-card.png">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..800;1,62..125,300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CA1E17;--red-deep:#9E140F;--ink:#1A1A1A;--grey:#838383;--slate:#5B5B5B;
+  --stone:#F3F1EE;--paper:#FFFFFF;--rule:#DAD6D0;--rule-strong:#B9B4AD;
+  --max:1180px;--gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:600;line-height:1.05;letter-spacing:-.01em}
+h1{font-size:clamp(40px,6.2vw,78px);font-variation-settings:"wdth" 88;font-weight:700}
+h2{font-size:clamp(30px,4vw,48px);font-variation-settings:"wdth" 90}
+h3{font-size:clamp(20px,2vw,24px)}
+p{margin:0 0 1em;max-width:62ch}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:600;padding:14px 22px;border:0;border-radius:3px;cursor:pointer;font:inherit;font-weight:600}
+.btn:hover{background:var(--red-deep)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
+.nav img{height:60px;width:auto;display:block}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:28px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--slate)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px}
+.menu{display:none;background:none;border:0;font:inherit;font-weight:600;cursor:pointer}
+@media (max-width:860px){
+  .nav ul{display:none;position:absolute;left:0;right:0;top:88px;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--rule)}
+  .nav ul.open{display:flex}
+  .nav ul li{padding:14px var(--gutter);border-top:1px solid var(--rule)}
+  .nav .btn{display:none}.menu{display:block}
+}
+
+/* hero */
+.hero{padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,80px);border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,96px);align-items:end}
+.hero h1 span{display:block}
+.hero h1 .red{color:var(--red)}
+.hero .lede{font-size:clamp(18px,1.5vw,21px);color:var(--slate);margin-top:28px;max-width:46ch}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.swoosh{width:100%;height:auto;display:block;transform:scale(1.18);transform-origin:right bottom}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.swoosh{max-width:360px}}
+
+/* program sheet */
+.programs{padding:clamp(56px,8vw,110px) 0}
+.sheet-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:40px}
+.sheet-head p{color:var(--slate);margin:0}
+@media (max-width:860px){.sheet-head{grid-template-columns:1fr}}
+.sheet{border-top:3px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr)}
+.sheet .col{border-right:1px solid var(--rule);padding:28px 24px 32px 0;margin-right:24px}
+.sheet .col:last-child{border-right:0;margin-right:0}
+.sheet .col h3{padding-bottom:14px;border-bottom:1px solid var(--rule-strong);margin-bottom:6px}
+.sheet .col h3 small{display:block;font-size:15px;font-weight:400;color:var(--grey);margin-top:6px}
+.sheet dl{margin:0}
+.sheet dt{font-weight:600;padding-top:16px}
+.sheet dd{margin:4px 0 14px;color:var(--slate);font-size:15.5px;line-height:1.5;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.sheet dd:last-child{border-bottom:0}
+.sheet .lead dt{color:var(--red)}
+@media (max-width:900px){.sheet{grid-template-columns:1fr}.sheet .col{border-right:0;margin-right:0;padding-right:0;border-bottom:3px solid var(--ink)}.sheet .col:last-child{border-bottom:0}}
+.sheet-foot{margin-top:28px;color:var(--grey);font-size:14.5px;max-width:80ch}
+
+/* why */
+.why{background:var(--stone);padding:clamp(56px,8vw,110px) 0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px)}
+.why ul{list-style:none;margin:0;padding:0}
+.why li{padding:22px 0;border-top:1px solid var(--rule-strong)}
+.why li:last-child{border-bottom:1px solid var(--rule-strong)}
+.why li strong{display:block;font-size:19px;margin-bottom:6px}
+.why li p{margin:0;color:var(--slate)}
+@media (max-width:860px){.why-grid{grid-template-columns:1fr}}
+
+/* where */
+.where{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
+.where-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.where .map{background:var(--stone);padding:32px;border-radius:4px}
+.where .map svg{width:100%;height:auto;display:block}
+.where .markets{columns:2;column-gap:32px;margin:20px 0 0;padding:0;list-style:none;color:var(--slate)}
+.where .markets li{padding:6px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
+@media (max-width:860px){.where-grid{grid-template-columns:1fr}}
+
+/* learn */
+.learn{padding:clamp(56px,8vw,110px) 0;background:var(--ink);color:#fff}
+.learn h2{color:#fff}
+.learn p{color:#CFCBC4}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:40px}
+.learn article{border-top:1px solid #4A4A4A;padding-top:20px}
+.learn article h3{color:#fff;margin-bottom:10px}
+.learn article p{font-size:15.5px}
+.learn article a{color:#fff;font-weight:600}
+@media (max-width:860px){.learn-grid{grid-template-columns:1fr;gap:24px}}
+
+/* about */
+.about{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px)}
+.about .person{border-top:3px solid var(--red);padding-top:18px;max-width:420px}
+.about .person strong{font-size:22px;display:block}
+.about .person span{display:block;color:var(--slate)}
+.about .person a{text-decoration:none;color:var(--ink)}
+.about .person a:hover{color:var(--red)}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* contact */
+.contact{padding:clamp(56px,8vw,110px) 0;background:var(--stone)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px)}
+.contact p{color:var(--slate)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form label{display:block;font-size:14.5px;font-weight:600;margin-bottom:6px}
+form input,form select,form textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--rule-strong);border-radius:3px;background:#fff;color:var(--ink)}
+form textarea{min-height:110px;resize:vertical}
+form .full{grid-column:1/-1}
+form .consent{font-size:13.5px;color:var(--grey);display:flex;gap:10px;align-items:flex-start}
+form .consent input{width:auto;margin-top:4px}
+.thanks{display:none;background:#fff;border-left:4px solid var(--red);padding:20px 24px}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+
+/* footer */
+footer{padding:48px 0 40px;font-size:14px;color:var(--slate)}
+footer .top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+footer img{height:56px;width:auto}
+footer .cols{display:flex;gap:48px;flex-wrap:wrap}
+footer .cols div{min-width:160px}
+footer .cols strong{display:block;color:var(--ink);margin-bottom:8px}
+footer .cols a{display:block;text-decoration:none;padding:3px 0}
+footer .legal{padding-top:24px;max-width:90ch;font-size:13.5px;line-height:1.6}
+footer .legal .eho{display:flex;align-items:center;gap:8px;margin-top:10px}
+footer .legal .eho svg{width:22px;height:22px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" aria-label="Red Rock Lending home"><img src="assets/logo.png" alt="Red Rock Lending"></a>
+    <button class="menu" aria-expanded="false" aria-controls="menu" onclick="var m=document.getElementById('menu');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
+    <ul id="menu">
+      <li><a href="#programs">Loan programs</a></li>
+      <li><a href="#where">Where we lend</a></li>
+      <li><a href="#learn">Learn</a></li>
+      <li><a href="#about">Who we are</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn" href="#contact">Talk to us</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1><span>Investment.</span><span>Commercial.</span><span>Residential.</span><span class="red">One lender.</span></h1>
+      <p class="lede">Most lenders do one thing. Red Rock Lending finances the whole picture — the rental you're buying, the building you're developing, the home you're moving into — from one team in Orlando.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Tell us about your deal</a>
+        <a class="btn ghost" href="#programs">See the programs</a>
+      </div>
+    </div>
+    <svg class="swoosh" viewBox="0 0 1000 330" aria-hidden="true">
+      <path d="M20 300 C 180 240, 300 110, 420 110 C 520 110, 540 220, 640 190 C 760 150, 860 90, 980 20 L 940 110 C 840 170, 740 230, 640 250 C 540 270, 520 165, 420 170 C 320 175, 180 280, 20 300 Z" fill="#CA1E17"/>
+    </svg>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Loan programs</h2>
+      <p>Three books of business, one phone number. Every program below is placed through lending partners we've vetted, so the paperwork you see is the paperwork that closes.</p>
+    </div>
+    <div class="sheet">
+      <div class="col lead">
+        <h3>Investment<small>For landlords, builders and buy-and-hold investors</small></h3>
+        <dl>
+          <dt>Rental / DSCR</dt><dd>Qualify on the property's rent, not your tax returns. The cleanest path for investors adding doors in Florida.</dd>
+          <dt>Bridge</dt><dd>Short-term capital to close fast and refinance later. Purchase or cash-out.</dd>
+          <dt>Construction hard money</dt><dd>Ground-up or heavy rehab for build-to-rent and build-to-sell. Draws tied to progress.</dd>
+          <dt>Commercial hard money</dt><dd>Asset-based financing when the timeline or the file doesn't fit a bank.</dd>
+        </dl>
+      </div>
+      <div class="col">
+        <h3>Commercial<small>Income property and owner-occupied business real estate</small></h3>
+        <dl>
+          <dt>Multifamily</dt><dd>Five units and up — acquisitions, refinances and value-add.</dd>
+          <dt>Office and retail</dt><dd>Stabilized and transitional properties, including mixed-use.</dd>
+          <dt>Warehouse and industrial</dt><dd>Flex, distribution and light manufacturing space.</dd>
+          <dt>Self-storage and mixed-use</dt><dd>Specialty assets that generalist lenders pass on.</dd>
+        </dl>
+      </div>
+      <div class="col">
+        <h3>Residential<small>Primary homes and second homes</small></h3>
+        <dl>
+          <dt>Refinance and cash-out</dt><dd>Lower the payment, change the term, or put your equity to work.</dd>
+          <dt>Conventional</dt><dd>Purchase financing for buyers with established credit and savings.</dd>
+          <dt>FHA and VA</dt><dd>Lower-down-payment paths for first-time buyers and service members — handled by people who like these loans.</dd>
+          <dt>Construction-to-permanent</dt><dd>Land, build and long-term financing in one closing.</dd>
+          <dt>Foreign nationals</dt><dd>Financing for buyers whose income and assets live outside the United States.</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="sheet-foot">Rates, terms and availability vary by program, property and borrower, and change daily. We don't publish rates here — call or write and we'll quote your scenario directly. All loans subject to credit approval.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div>
+      <h2>Why one lender matters</h2>
+      <p style="margin-top:20px;color:var(--slate)">Red Rock Lending is part of the Red Rock Holdings group alongside Goyal &amp; DeCoster Realty. The same philosophy runs through both: handle every real estate need a client has, so they never have to start over with a stranger.</p>
+    </div>
+    <ul>
+      <li><strong>Every product, one conversation</strong><p>Investment, commercial and residential teams rarely share an office. Here they share a desk — so a DSCR investor who also needs a primary-home refinance has one point of contact.</p></li>
+      <li><strong>Financing that follows the deal</strong><p>Buying through Goyal &amp; DeCoster? The lending side already knows the property, the timeline and the contract.</p></li>
+      <li><strong>Plain answers on hard loans</strong><p>Construction and commercial financing are where most borrowers get lost. We explain the structure before you commit to anything.</p></li>
+      <li><strong>Realtor friendly</strong><p>Agents get a direct line, fast pre-qualifications and honest timelines — the things that keep a contract alive.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="where" id="where">
+  <div class="wrap where-grid">
+    <div class="map" aria-hidden="true">
+      <svg viewBox="0 0 400 420">
+        <path d="M18 62 L40 58 L70 60 L96 56 L124 58 L150 54 L178 56 L206 52 L226 54 L232 66 L238 78 L242 94 L256 106 L270 120 L286 142 L300 168 L312 196 L322 224 L330 252 L338 282 L344 312 L346 340 L342 366 L334 386 L322 398 L306 404 L292 398 L282 384 L276 366 L272 344 L266 322 L258 300 L250 280 L242 262 L232 246 L222 232 L212 220 L202 210 L190 202 L178 198 L166 192 L156 184 L150 172 L148 158 L146 144 L142 130 L134 118 L122 110 L106 106 L88 108 L72 112 L56 110 L40 104 L28 94 L20 80 Z" fill="#E6E2DC" stroke="#B9B4AD" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="236" cy="212" r="9" fill="#CA1E17"/>
+        <circle cx="236" cy="212" r="18" fill="none" stroke="#CA1E17" stroke-opacity=".35" stroke-width="2"/>
+        <text x="254" y="218" font-family="Archivo,sans-serif" font-size="16" font-weight="600" fill="#1A1A1A">Orlando</text>
+      </svg>
+    </div>
+    <div>
+      <h2>Where we lend</h2>
+      <p style="margin-top:20px;color:var(--slate)">Florida, statewide. Our home market is Central Florida, where the team lives, sells and builds — and where we see the growth before it shows up in the data.</p>
+      <ul class="markets">
+        <li>Orlando and Orange County</li>
+        <li>Winter Park and Maitland</li>
+        <li>Seminole County</li>
+        <li>Osceola County and Kissimmee</li>
+        <li>Lake and Polk Counties</li>
+        <li>The Space Coast — Brevard and Volusia</li>
+        <li>Tampa Bay</li>
+        <li>South Florida</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="learn" id="learn">
+  <div class="wrap">
+    <h2>Learn</h2>
+    <p style="margin-top:16px">The loans people don't know exist are usually the ones that would have worked. Short explainers, no jargon.</p>
+    <div class="learn-grid">
+      <article>
+        <h3>What a DSCR loan actually is</h3>
+        <p>How a rental qualifies on its own income, what ratio lenders look for, and why it's become the standard tool for Florida investors.</p>
+        <a href="#contact">Ask us about DSCR</a>
+      </article>
+      <article>
+        <h3>Building a home without building a headache</h3>
+        <p>Construction-to-permanent explained: one closing, land plus build, and how draws work while the house goes up.</p>
+        <a href="#contact">Ask us about construction</a>
+      </article>
+      <article>
+        <h3>Commercial loans are simpler than they look</h3>
+        <p>What a lender needs to see on a multifamily, office or warehouse deal — and the questions to answer before you call.</p>
+        <a href="#contact">Ask us about commercial</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>Who we are</h2>
+      <p style="margin-top:20px;color:var(--slate)">Red Rock Lending, LLC is an Orlando lending firm founded in 2026 as the financing arm of Red Rock Holdings. We work with investors, developers, business owners and families across Florida, and we partner closely with Goyal &amp; DeCoster Realty so that buying, building and borrowing happen in one place.</p>
+      <p style="color:var(--slate)">Our office is at 121 South Orange Avenue in downtown Orlando.</p>
+    </div>
+    <div class="person">
+      <strong>Victoria Ralicki</strong>
+      <span>Partner, Red Rock Lending</span>
+      <span style="margin-top:14px"><a href="tel:+13214465410">321-446-5410</a></span>
+      <span><a href="mailto:victoria.ralicki@redrocklendingusa.com">victoria.ralicki@redrocklendingusa.com</a></span>
+      <span style="margin-top:14px;color:var(--grey);font-size:14.5px">Bilingual — English and Spanish.</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Tell us about your deal</h2>
+      <p style="margin-top:20px">A few details and we'll come back with the programs that fit, what they'd need from you, and a realistic timeline. No obligation, and nothing runs on your credit from this form.</p>
+      <p>Prefer to talk? <a href="tel:+13214465410" style="color:var(--ink);font-weight:600">321-446-5410</a></p>
+    </div>
+    <div>
+      <form id="lead" onsubmit="event.preventDefault();this.style.display='none';document.getElementById('thanks').style.display='block'">
+        <div><label for="fn">First name</label><input id="fn" name="firstname" autocomplete="given-name" required></div>
+        <div><label for="ln">Last name</label><input id="ln" name="lastname" autocomplete="family-name" required></div>
+        <div><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="ph">Phone</label><input id="ph" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="full"><label for="type">What are you financing?</label>
+          <select id="type" name="loan_type" required>
+            <option value="">Choose one</option>
+            <option>Rental / DSCR</option><option>Bridge</option><option>Construction</option>
+            <option>Commercial property</option><option>Home purchase</option><option>Refinance or cash-out</option>
+            <option>Foreign national purchase</option><option>Not sure yet</option>
+          </select></div>
+        <div class="full"><label for="msg">Tell us about it</label><textarea id="msg" name="message" placeholder="Property type, location, purchase price or loan amount, and your timeline."></textarea></div>
+        <div class="full consent"><input type="checkbox" id="ok" required><label for="ok" style="font-weight:400;margin:0">You can contact me about this request by phone, text or email.</label></div>
+        <div class="full"><button class="btn" type="submit">Send my details</button></div>
+      </form>
+      <div class="thanks" id="thanks"><strong>Sent.</strong> Victoria will be in touch within one business day.</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <img src="assets/logo.png" alt="Red Rock Lending">
+      <div class="cols">
+        <div><strong>Programs</strong><a href="#programs">Investment</a><a href="#programs">Commercial</a><a href="#programs">Residential</a></div>
+        <div><strong>Company</strong><a href="#about">Who we are</a><a href="#where">Where we lend</a><a href="#contact">Contact</a></div>
+        <div><strong>Office</strong><span>121 South Orange Avenue, Suite 1100N<br>Orlando, Florida 32801</span></div>
+      </div>
+    </div>
+    <div class="legal">
+      Red Rock Lending, LLC, Orlando, Florida. A Red Rock Holdings company. Red Rock Lending's Florida mortgage broker license application is pending with the Florida Office of Financial Regulation; until it is issued, Red Rock Lending does not take residential mortgage applications or quote loan terms, and this site is informational only. Programs described are offered through third-party lending partners and are subject to their credit approval, terms and availability. Goyal &amp; DeCoster Realty is a separate, affiliated real estate brokerage; using one company does not require using the other.
+      <div class="eho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 11h3v9h14v-9h3L12 3zm-4 15v-6h8v6H8z" fill="#5B5B5B"/></svg>Equal Housing Opportunity</div>
+      <div style="margin-top:10px">© 2026 Red Rock Lending, LLC</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
