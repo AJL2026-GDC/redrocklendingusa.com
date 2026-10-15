@@ -36,6 +36,7 @@ p{margin:0 0 1em;max-width:62ch}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 
 /* header */
+body::before{content:"";display:block;height:5px;background:var(--red)}
 header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:104px;gap:24px}
 .nav img{height:76px;width:auto;display:block}
@@ -89,6 +90,27 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdro
 .why li p{margin:0;color:var(--slate)}
 @media (max-width:860px){.why-grid{grid-template-columns:1fr}}
 
+/* how */
+.how{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--rule)}
+.steps{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:step}
+.steps li{counter-increment:step;padding:24px 24px 0 0;border-top:3px solid var(--red);margin-right:24px;position:relative}
+.steps li:last-child{margin-right:0}
+.steps li::before{content:counter(step);display:block;font-size:44px;font-weight:800;line-height:1;color:var(--red);margin-bottom:14px;font-variation-settings:"wdth" 80}
+.steps li strong{display:block;font-size:19px;margin-bottom:8px}
+.steps li p{margin:0;color:var(--slate);font-size:15.5px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;gap:24px}.steps li{margin-right:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+/* faq */
+.faq{padding:clamp(56px,8vw,110px) 0;background:var(--stone)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:start}
+.faq details{border-top:1px solid var(--rule-strong);padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--rule-strong)}
+.faq summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--red);font-weight:700;font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:12px 0 0;color:var(--slate);max-width:60ch}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr}}
 /* where */
 .where{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
 .where-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,96px);align-items:center}
@@ -154,6 +176,7 @@ footer .legal .eho svg{width:22px;height:22px}
     <button class="menu" aria-expanded="false" aria-controls="menu" onclick="var m=document.getElementById('menu');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
     <ul id="menu">
       <li><a href="#programs">Loan programs</a></li>
+      <li><a href="#how">How it works</a></li>
       <li><a href="#where">Where we lend</a></li>
       <li><a href="#learn">Learn</a></li>
       <li><a href="#about">Who we are</a></li>
@@ -199,12 +222,13 @@ footer .legal .eho svg{width:22px;height:22px}
       <div class="col">
         <h3>Commercial<small>Income property and owner-occupied business real estate</small></h3>
         <dl>
+          <dt>Commercial hard money</dt><dd>Asset-based financing when the timeline or the file doesn't fit a bank. Our most-requested commercial product.</dd>
           <dt>Multifamily</dt><dd>Five units and up — acquisitions, refinances and value-add.</dd>
           <dt>Office and retail</dt><dd>Stabilized and transitional properties, including mixed-use.</dd>
-          <dt>Warehouse and industrial</dt><dd>Flex, distribution and light manufacturing space.</dd>
-          <dt>Self-storage and mixed-use</dt><dd>Specialty assets that generalist lenders pass on.</dd>
-          <dt>Land</dt><dd>Entitled and development land, placed with the commercial and hard-money lenders who actually fund it.</dd>
-          <dt>Commercial hard money</dt><dd>Asset-based financing when the timeline or the file doesn't fit a bank.</dd>
+          <dt>Warehouse</dt><dd>Distribution, flex and storage buildings.</dd>
+          <dt>Industrial</dt><dd>Light manufacturing and specialized industrial space.</dd>
+          <dt>Self-storage</dt><dd>A specialty asset most generalist lenders pass on.</dd>
+          <dt>Land</dt><dd>Entitled and development land, placed with the commercial and hard-money lenders who actually fund it. Sized to the land's value, not just its acreage.</dd>
         </dl>
       </div>
       <div class="col">
@@ -234,6 +258,32 @@ footer .legal .eho svg{width:22px;height:22px}
       <li><strong>Plain answers on hard loans</strong><p>Construction and commercial financing are where most borrowers get lost. We explain the structure before you commit to anything.</p></li>
       <li><strong>Realtor friendly</strong><p>Agents get a direct line, fast pre-qualifications and honest timelines — the things that keep a contract alive.</p></li>
     </ul>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2>How a loan comes together</h2>
+    <ol class="steps">
+      <li><strong>Tell us the deal</strong><p>A call or the form below. Property, purpose, timeline, and what you'd like the loan to do.</p></li>
+      <li><strong>We match the program</strong><p>Within a business day you hear which programs fit, what each needs from you, and what to expect on timing.</p></li>
+      <li><strong>One file, one contact</strong><p>Victoria collects the documents once and runs the file with the lending partner — you never re-explain your deal.</p></li>
+      <li><strong>Clear to close</strong><p>Appraisal, underwriting and closing coordinated with your agent and title company. Then the keys.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap faq-grid">
+    <h2>Questions we hear most</h2>
+    <div>
+      <details><summary>I don't show much income on my tax returns. Can I still buy a rental?</summary><p>Usually, yes. A DSCR loan qualifies on the property's rent rather than your personal income. It's the standard tool for investors who own businesses or write off heavily.</p></details>
+      <details><summary>Do you finance land?</summary><p>Yes, through our commercial and hard-money partners — typically land that's entitled or headed for construction. If you're buying a lot to build your own home, construction-to-permanent covers the land and the build in one closing.</p></details>
+      <details><summary>What is "hard money," and when does it make sense?</summary><p>Short-term, asset-based financing. It costs more than a bank loan but closes fast and looks at the property first. It fits purchases on a deadline, heavy renovations, and borrowers whose paperwork doesn't fit a bank's box — with a plan to refinance into long-term financing after.</p></details>
+      <details><summary>I'm a foreign national. Can I get a mortgage in Florida?</summary><p>Yes. Several programs lend to buyers whose income and assets are outside the United States. Expect a larger down payment and documentation of funds; we'll walk you through exactly what's needed.</p></details>
+      <details><summary>Do you work with real estate agents?</summary><p>All the time — including the agents at Goyal &amp; DeCoster. Agents get a direct line, fast pre-qualifications and honest timelines.</p></details>
+      <details><summary>Will you publish your rates?</summary><p>No. Rates change daily and depend on the program, the property and the borrower, so a number on a website would be wrong by the time you read it. Call or write and we'll quote your scenario.</p></details>
+    </div>
   </div>
 </section>
 
