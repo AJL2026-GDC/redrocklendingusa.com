@@ -133,14 +133,15 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdro
 
 /* about / leadership */
 .about{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
-.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.team>li{min-width:0}
 .team li{border-top:3px solid var(--red);padding-top:18px}
-.team>li>img,.team>li>.initials{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;background:var(--stone);margin-bottom:16px}
+.team>li>img,.team>li>.initials{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;background:var(--stone);margin-bottom:16px}
 .team>li>.initials{display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:800;color:var(--rule-strong);letter-spacing:.04em}
 .team strong{display:block;font-size:21px;line-height:1.15}
 .team .role{display:block;color:var(--red);font-weight:600;font-size:14.5px;margin:4px 0 10px}
 .team p{margin:0;color:var(--slate);font-size:15px;line-height:1.5}
-.team .reach{display:block;margin-top:10px;font-size:14px}
+.team .reach{display:block;margin-top:10px;font-size:14px;line-height:1.5}
 .team .reach a{text-decoration:none;color:var(--ink)}
 .team .reach a:hover{color:var(--red)}
 @media (max-width:900px){.team{grid-template-columns:1fr 1fr}}
@@ -370,11 +371,11 @@ footer .legal .eho svg{width:22px;height:22px}
         <p>Biography and photograph coming soon.</p>
       </li>
       <li>
-        <img src="victoria.jpg" alt="Victoria Ralicki" width="600" height="750">
+        <img src="victoria.jpg" alt="Victoria Ralicki" width="600" height="800">
         <strong>Victoria Ralicki</strong>
         <span class="role">Partner, Red Rock Lending</span>
         <p>Victoria leads Red Rock Lending day to day — matching each borrower to the right program and running the file from first call to closing. Bilingual in English and Spanish.</p>
-        <span class="reach"><a href="tel:+13214465410">321-446-5410</a> · <a href="mailto:victoria.ralicki@redrocklendingusa.com">victoria.ralicki@redrocklendingusa.com</a></span>
+        <span class="reach"><a href="tel:+13214465410">321-446-5410</a><br><a href="mailto:victoria.ralicki@redrocklendingusa.com">victoria.ralicki<wbr>@redrocklendingusa.com</a></span>
       </li>
     </ul>
   </div>
