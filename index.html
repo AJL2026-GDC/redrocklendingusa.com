@@ -131,15 +131,20 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdro
 .learn article a{color:#fff;font-weight:600}
 @media (max-width:860px){.learn-grid{grid-template-columns:1fr;gap:24px}}
 
-/* about */
+/* about / leadership */
 .about{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px)}
-.about .person{border-top:3px solid var(--red);padding-top:18px;max-width:420px}
-.about .person strong{font-size:22px;display:block}
-.about .person span{display:block;color:var(--slate)}
-.about .person a{text-decoration:none;color:var(--ink)}
-.about .person a:hover{color:var(--red)}
-@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+.team{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.team li{border-top:3px solid var(--red);padding-top:18px}
+.team>li>img,.team>li>.initials{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;background:var(--stone);margin-bottom:16px}
+.team>li>.initials{display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:800;color:var(--rule-strong);letter-spacing:.04em}
+.team strong{display:block;font-size:21px;line-height:1.15}
+.team .role{display:block;color:var(--red);font-weight:600;font-size:14.5px;margin:4px 0 10px}
+.team p{margin:0;color:var(--slate);font-size:15px;line-height:1.5}
+.team .reach{display:block;margin-top:10px;font-size:14px}
+.team .reach a{text-decoration:none;color:var(--ink)}
+.team .reach a:hover{color:var(--red)}
+@media (max-width:900px){.team{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.team{grid-template-columns:1fr}}
 
 /* contact */
 .contact{padding:clamp(56px,8vw,110px) 0;background:var(--stone)}
@@ -179,7 +184,7 @@ footer .legal .eho svg{width:22px;height:22px}
       <li><a href="#how">How it works</a></li>
       <li><a href="#where">Where we lend</a></li>
       <li><a href="#learn">Learn</a></li>
-      <li><a href="#about">Who we are</a></li>
+      <li><a href="#about">Leadership</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="btn" href="#contact">Talk to us</a>
@@ -340,19 +345,38 @@ footer .legal .eho svg{width:22px;height:22px}
 </section>
 
 <section class="about" id="about">
-  <div class="wrap about-grid">
-    <div>
-      <h2>Who we are</h2>
-      <p style="margin-top:20px;color:var(--slate)">Red Rock Lending, LLC is an Orlando lending firm founded in 2026 as the financing arm of Red Rock Holdings. We work with investors, developers, business owners and families across Florida, and we partner closely with Goyal &amp; DeCoster Realty so that buying, building and borrowing happen in one place.</p>
-      <p style="color:var(--slate)">Our office is at 121 South Orange Avenue in downtown Orlando.</p>
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Leadership</h2>
+      <p>Red Rock Lending, LLC is the financing arm of Red Rock Holdings, founded in 2026 and based at 121 South Orange Avenue in downtown Orlando. The same people who develop, build and sell real estate across Florida stand behind every loan we place.</p>
     </div>
-    <div class="person">
-      <strong>Victoria Ralicki</strong>
-      <span>Partner, Red Rock Lending</span>
-      <span style="margin-top:14px"><a href="tel:+13214465410">321-446-5410</a></span>
-      <span><a href="mailto:victoria.ralicki@redrocklendingusa.com">victoria.ralicki@redrocklendingusa.com</a></span>
-      <span style="margin-top:14px;color:var(--grey);font-size:14.5px">Bilingual — English and Spanish.</span>
-    </div>
+    <ul class="team">
+      <li>
+        <img src="freddy.jpg" alt="Freddy DeCoster" width="600" height="800">
+        <strong>Freddy DeCoster</strong>
+        <span class="role">Co-Founder and Managing Member</span>
+        <p>Over twenty years in real estate as broker, developer and investor, specializing in financing structures for development projects and complex commercial transactions. Owner and managing broker of Goyal &amp; DeCoster Realty; member of the CCIM Institute. Fluent in French, English and Spanish.</p>
+      </li>
+      <li>
+        <img src="raj.jpg" alt="Raj Goyal" width="600" height="800">
+        <strong>Raj Goyal</strong>
+        <span class="role">Co-Founder and Member</span>
+        <p>Real estate developer, investor and entrepreneur with more than 28 years across real estate, manufacturing, hospitality and trading. Focused on income-producing property and development across multifamily, industrial, hospitality, commercial and land in Florida and Texas. Co-owner of Goyal &amp; DeCoster Realty.</p>
+      </li>
+      <li>
+        <div class="initials" aria-hidden="true">JG</div>
+        <strong>Jim Gibbons</strong>
+        <span class="role">Member</span>
+        <p>Biography and photograph coming soon.</p>
+      </li>
+      <li>
+        <img src="victoria.jpg" alt="Victoria Ralicki" width="600" height="750">
+        <strong>Victoria Ralicki</strong>
+        <span class="role">Partner, Red Rock Lending</span>
+        <p>Victoria leads Red Rock Lending day to day — matching each borrower to the right program and running the file from first call to closing. Bilingual in English and Spanish.</p>
+        <span class="reach"><a href="tel:+13214465410">321-446-5410</a> · <a href="mailto:victoria.ralicki@redrocklendingusa.com">victoria.ralicki@redrocklendingusa.com</a></span>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -400,7 +424,7 @@ if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t
       <img src="logo.png" alt="Red Rock Lending">
       <div class="cols">
         <div><strong>Programs</strong><a href="#programs">Investment</a><a href="#programs">Commercial</a><a href="#programs">Residential</a></div>
-        <div><strong>Company</strong><a href="#about">Who we are</a><a href="#where">Where we lend</a><a href="#contact">Contact</a></div>
+        <div><strong>Company</strong><a href="#about">Leadership</a><a href="#where">Where we lend</a><a href="#contact">Contact</a></div>
         <div><strong>Office</strong><span>121 South Orange Avenue, Suite 1100N<br>Orlando, Florida 32801</span></div>
       </div>
     </div>
