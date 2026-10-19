@@ -99,6 +99,21 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdro
 .why li p{margin:0;color:var(--slate)}
 @media (max-width:860px){.why-grid{grid-template-columns:1fr}}
 
+/* group */
+.group{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
+.group .chart{display:block;margin:36px 0 8px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:#fff}
+.group .chart img{width:100%;height:auto;display:block}
+.group .cap{font-size:14.5px;color:var(--grey);margin:0 0 28px}
+.group .cos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.group .cos li{padding:14px 0;border-top:1px solid var(--rule);font-size:16.5px}
+.group .cos li strong{display:block}
+.group .cos li span{color:var(--grey);font-size:15px}
+.group .cos li a{text-decoration:none;color:var(--ink);border-bottom:1.5px solid var(--red)}
+.group .cos li a:hover{color:var(--red)}
+.group .cos li.soon{color:var(--grey)}
+.group .cos li.soon strong{color:var(--grey);font-weight:500}
+@media (max-width:860px){.group .cos{grid-template-columns:1fr}}
+
 /* how */
 .how{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--rule)}
 .steps{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:step}
@@ -272,13 +287,35 @@ footer .legal .eho svg{width:22px;height:22px}
   <div class="wrap why-grid">
     <div>
       <h2>Why one lender matters</h2>
-      <p style="margin-top:20px;color:var(--slate)">Red Rock Lending is part of the Red Rock Holdings group alongside Goyal &amp; DeCoster Realty. The same philosophy runs through both: handle every real estate need a client has, so they never have to start over with a stranger.</p>
+      <p style="margin-top:20px;color:var(--slate)">Red Rock Lending is part of the Red Rock Holdings group alongside <a href="https://www.goyaldecoster.com" rel="noopener" style="color:var(--ink);font-weight:600">Goyal &amp; DeCoster Realty</a>. The same philosophy runs through both: handle every real estate need a client has, so they never have to start over with a stranger.</p>
     </div>
     <ul>
       <li><strong>Every product, one conversation</strong><p>Investment, commercial and residential teams rarely share an office. Here they share a desk — so a DSCR investor who also needs a primary-home refinance has one point of contact.</p></li>
       <li><strong>Financing that follows the deal</strong><p>Buying through Goyal &amp; DeCoster? The lending side already knows the property, the timeline and the contract.</p></li>
       <li><strong>Plain answers on hard loans</strong><p>Construction and commercial financing are where most borrowers get lost. We explain the structure before you commit to anything.</p></li>
       <li><strong>Realtor friendly</strong><p>Agents get a direct line, fast pre-qualifications and honest timelines — the things that keep a contract alive.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="group" id="group">
+  <div class="wrap">
+    <div class="sheet-head">
+      <h2>Part of Red Rock Holdings</h2>
+      <p>Red Rock Lending is one of the operating companies of Red Rock Holdings, the Orlando group behind <a href="https://www.goyaldecoster.com" style="color:var(--ink);font-weight:600">Goyal &amp; DeCoster Realty</a>. Real estate, capital, lending and consulting sit under one roof, and a portion of every deal flows to the group's foundations.</p>
+    </div>
+    <a class="chart" href="group-structure.jpg" target="_blank" rel="noopener"><img src="group-structure.jpg" alt="Red Rock Holdings group structure chart: Investments, Capital, Lending, Title, Consulting, Goyal &amp; DeCoster, Construction, Architecture and Design, Insurance, and the three foundations" width="2400" height="1350"></a>
+    <p class="cap">Solid = operating today · Dashed = future addition · Tap the chart to open it full size.</p>
+    <ul class="cos">
+      <li><strong><a href="https://www.goyaldecoster.com" rel="noopener">Goyal &amp; DeCoster Realty</a></strong><span>Residential and commercial brokerage — Florida, Texas, Ohio</span></li>
+      <li><strong>Red Rock Lending</strong><span>Mortgage and construction financing — this site</span></li>
+      <li><strong>Red Rock Investments</strong><span>Properties and joint ventures</span></li>
+      <li><strong>Red Rock Capital</strong><span>JV partnerships and deal flow</span></li>
+      <li><strong>Red Rock Consulting</strong><span>Partners and advisors, since 2014</span></li>
+      <li><strong>Foundations</strong><span>The Humanitarian Alliance · World of Grace · Human Potential Foundation</span></li>
+      <li class="soon"><strong>Red Rock Title</strong><span>Closings and escrow — coming</span></li>
+      <li class="soon"><strong>Red Rock Construction &amp; Architecture / Design</strong><span>Coming</span></li>
+      <li class="soon"><strong>Red Rock Insurance</strong><span>Builder's risk and property — coming</span></li>
     </ul>
   </div>
 </section>
@@ -368,8 +405,8 @@ footer .legal .eho svg{width:22px;height:22px}
       <li>
         <img src="freddy.jpg" alt="Freddy DeCoster" width="600" height="800">
         <strong>Freddy DeCoster</strong>
-        <span class="role">President</span>
-        <p>Over twenty years in real estate as broker, developer and investor, specializing in financing structures for development projects and complex commercial transactions. Owner and managing broker of Goyal &amp; DeCoster Realty; member of the CCIM Institute. Fluent in French, English and Spanish.</p>
+        <span class="role">President, Red Rock Lending · President &amp; CEO, Red Rock Holdings</span>
+        <p>More than twenty years in real estate as broker, developer and investor, with a specialty in structuring the financing behind development projects and complex commercial transactions. Co-founder and Broker of Record of Goyal &amp; DeCoster Realty and the architect of the Red Rock Holdings group — real estate, capital, lending and consulting under one roof. Member of the CCIM Institute. Fluent in French, English and Spanish; reads Italian, German and Portuguese.</p>
       </li>
       <li>
         <img src="raj.jpg" alt="Raj Goyal" width="600" height="800">
@@ -387,7 +424,7 @@ footer .legal .eho svg{width:22px;height:22px}
         <img src="victoria.jpg" alt="Victoria Ralicki" width="600" height="800">
         <strong>Victoria Ralicki</strong>
         <span class="role">Managing Partner</span>
-        <p>Victoria leads Red Rock Lending day to day — matching each borrower to the right program and running the file from first call to closing. Bilingual in English and Spanish.</p>
+        <p>More than thirty years in real estate, sales and lending, serving investors, developers, builders and families across Central and South Florida. Victoria leads Red Rock Lending day to day — matching each borrower to the right program and running the file from first call to closing — with hands-on experience in DSCR and rental loans, conventional, commercial, bridge and foreign-national programs. Bachelor's degree in Business, Bogotá. Bilingual in English and Spanish.</p>
         <span class="reach"><a href="tel:+13214465410">321-446-5410</a></span>
       </li>
     </ul>
@@ -438,7 +475,7 @@ if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t
       <img src="logo.png" alt="Red Rock Lending">
       <div class="cols">
         <div><strong>Programs</strong><a href="#programs">Investment</a><a href="#programs">Commercial</a><a href="#programs">Residential</a></div>
-        <div><strong>Company</strong><a href="#about">Leadership</a><a href="#where">Where we lend</a><a href="#contact">Loan request</a></div>
+        <div><strong>Company</strong><a href="#about">Leadership</a><a href="#group">Red Rock Holdings</a><a href="https://www.goyaldecoster.com" rel="noopener">Goyal &amp; DeCoster Realty</a><a href="#where">Where we lend</a><a href="#contact">Loan request</a></div>
         <div><strong>Office</strong><span>121 South Orange Avenue, Suite 1100N<br>Orlando, Florida 32801</span></div>
       </div>
     </div>
