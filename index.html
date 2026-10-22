@@ -490,5 +490,39 @@ if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t
   </div>
 </footer>
 
+<!-- LANG v1 (Oct 22): language flags, same engine and languages as goyaldecoster.com (Google Website Translator) -->
+<style>
+html[class*="translated"] .nav ul{gap:14px;font-size:14.5px}html[class*="translated"] .nav .btn{padding:10px 14px;font-size:15px}html[class*="translated"] .nav .phone{font-size:20px}html.translated-rtl #rr-lang{direction:ltr}
+#rr-lang{position:fixed;left:14px;bottom:14px;z-index:9990;display:flex;align-items:center;gap:6px;padding:7px 10px;background:#fff;border:1px solid var(--rule);border-top:3px solid var(--red);border-radius:6px;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+#rr-lang button{all:unset;cursor:pointer;display:block;width:24px;height:18px;border-radius:2px;overflow:hidden;opacity:.62;transition:opacity .15s,transform .15s;outline:1px solid rgba(0,0,0,.12)}
+#rr-lang button:hover,#rr-lang button:focus-visible{opacity:1;transform:translateY(-1px)}
+#rr-lang button.on{opacity:1;outline:2px solid var(--red)}
+#rr-lang img{display:block;width:100%;height:100%;object-fit:cover}
+#rr-lang .gl-tg{display:none;color:var(--red);font-size:15px;line-height:18px;width:auto;height:18px;outline:0;padding:0 2px;opacity:1}
+@media (max-width:767px){#rr-lang{left:10px;bottom:10px;flex-wrap:wrap;max-width:calc(100vw - 20px)}#rr-lang:not(.open) button:not(.on):not(.gl-tg){display:none}#rr-lang .gl-tg{display:block}}
+body>.skiptranslate,iframe.skiptranslate,.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+body{top:0!important}font[style]{background:none!important;box-shadow:none!important}#rr-gte{display:none}
+</style>
+<script>
+!function(){try{var D=document;
+var L=[["en","us","English"],["es","es","Español"],["pt","br","Português"],["fr","fr","Français"],["ru","ru","Русский"],["zh-CN","cn","中文"],["ar","sa","العربية"],["de","de","Deutsch"],["it","it","Italiano"],["hi","in","हिन्दी"]],F="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/";
+/* keep company and people names in English */
+var KEEP=/(Red Rock Lending, LLC|Red Rock Lending|Red Rock Holdings|Red Rock Investments|Red Rock Capital|Red Rock Consulting|Red Rock Title|Red Rock Construction|Red Rock Insurance|Goyal &(amp;)? DeCoster Realty|Goyal &(amp;)? DeCoster|Freddy DeCoster|Raj Goyal|Jim Gibbons|Victoria Ralicki|The Humanitarian Alliance|World of Grace|Human Potential Foundation|NaturesPlus|Khrysos Industries|AlphoMX|CCIM Institute|\d{3}-\d{3}-\d{4}|[\w.]+@redrocklendingusa\.com|redrocklendingusa\.com)/g;
+function protect(){var w=D.createTreeWalker(D.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE|TEXTAREA|OPTION)$/.test(p.nodeName)||p.closest(".notranslate"))return 2;KEEP.lastIndex=0;return KEEP.test(n.nodeValue)?1:2}}),ns=[],n;while(n=w.nextNode())ns.push(n);
+ns.forEach(function(t){var f=D.createDocumentFragment(),s=t.nodeValue,i=0,m;KEEP.lastIndex=0;while(m=KEEP.exec(s)){var a=m.index,z=a+m[0].length;while(a>i&&/\s/.test(s[a-1]))a--;while(z<s.length&&/[\s.,;:)]/.test(s[z])&&z-(m.index+m[0].length)<2)z++;a>i&&f.appendChild(D.createTextNode(s.slice(i,a)));var sp=D.createElement("span");sp.className="notranslate";sp.setAttribute("translate","no");sp.textContent=s.slice(a,z).replace(/^\s+/,"\u00a0").replace(/\s+$/,"\u00a0");f.appendChild(sp);i=z}i<s.length&&f.appendChild(D.createTextNode(s.slice(i)));t.parentNode.replaceChild(f,t)});
+}
+function cur(){var m=D.cookie.match(/(?:^|;\s*)googtrans=\/[^\/]*\/([^;]+)/);return m?decodeURIComponent(m[1]):"en"}
+function setCk(v){var h=location.hostname,ds=["",h,"."+h.replace(/^www\./,"")],x=v?"/en/"+v:"";ds.forEach(function(d){D.cookie="googtrans="+x+";path=/"+(d?";domain="+d:"")+(v?"":";expires=Thu, 01 Jan 1970 00:00:00 GMT")})}
+var box;function mark(v){box&&[].forEach.call(box.querySelectorAll("button[data-l]"),function(b){b.classList.toggle("on",b.getAttribute("data-l")===v)});D.documentElement.setAttribute("lang",v==="zh-CN"?"zh":v)}
+function pick(v){if(v===cur())return;if(v==="en"){setCk("");location.reload();return}var s=D.querySelector("select.goog-te-combo");if(s){s.value=v;s.dispatchEvent(new Event("change"));mark(v)}else{setCk(v);location.reload()}}
+function ui(){if(D.getElementById("rr-lang"))return;box=D.createElement("div");box.id="rr-lang";box.className="notranslate";box.setAttribute("translate","no");box.setAttribute("role","group");box.setAttribute("aria-label","Translate this site");var c=cur();
+box.innerHTML=L.map(function(l){return'<button type="button" data-l="'+l[0]+'" title="'+l[2]+'" aria-label="'+l[2]+'"'+(l[0]===c?' class="on"':"")+'><img src="'+F+l[1]+'.svg" alt="" loading="lazy"></button>'}).join("")+'<button type="button" class="gl-tg" aria-label="More languages">&#9656;</button>';
+box.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(b.classList.contains("gl-tg")){box.classList.toggle("open");b.innerHTML=box.classList.contains("open")?"&#9666;":"&#9656;";return}pick(b.getAttribute("data-l"))});
+D.body.appendChild(box);var g=D.createElement("div");g.id="rr-gte";D.body.appendChild(g)}
+window.rrTInit=function(){try{new google.translate.TranslateElement({pageLanguage:"en",includedLanguages:L.map(function(l){return l[0]}).join(","),autoDisplay:!1},"rr-gte")}catch(e){console.error("rr translate",e)}};
+function boot(){protect();ui();var s=D.createElement("script");s.src="https://translate.google.com/translate_a/element.js?cb=rrTInit";s.async=!0;D.body.appendChild(s)}
+D.readyState==="loading"?addEventListener("DOMContentLoaded",boot):boot()}catch(e){console.error("rr LANG",e)}}();
+</script>
+
 </body>
 </html>
