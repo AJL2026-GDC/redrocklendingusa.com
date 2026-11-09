@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Back Office — Red Rock Lending</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<!-- RRL PORTAL v1.0 (Nov 9 2026). Shell only: no content lives in this file. Everything is served by the login service after sign-in. -->
+<style>
+:root{--red:#CA1E17;--red-deep:#9E140F;--ink:#1A1A1A;--grey:#838383;--slate:#5B5B5B;--stone:#F3F1EE;--paper:#fff;--rule:#DAD6D0;--ok:#1F7A3A;--warn:#9A6400}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";display:block;height:5px;background:var(--red)}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.01em;font-variation-settings:"wdth" 90;line-height:1.1}
+a{color:var(--red)}
+button,input,select,textarea{font:inherit}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:3px;padding:11px 18px;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--red-deep)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{padding:6px 11px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:default}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.hidden{display:none!important}
+/* sign-in card */
+.gate{min-height:calc(100vh - 5px);display:grid;place-items:center;padding:24px 16px}
+.card{background:var(--paper);width:100%;max-width:420px;padding:32px 28px;border-top:3px solid var(--red);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.card img{width:150px;display:block;margin-bottom:18px}
+.card h1{font-size:28px;margin-bottom:6px}
+.card p{color:var(--slate);margin:0 0 18px}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+input[type=email],input[type=password],input[type=text],select,textarea{width:100%;padding:11px 12px;border:1.5px solid var(--rule);border-radius:3px;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:none}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.show{display:flex;align-items:center;gap:8px;font-weight:400;font-size:14px;color:var(--slate)}
+.msg{margin-top:14px;font-size:14px;min-height:20px}
+.msg.err{color:var(--red)}.msg.ok{color:var(--ok)}
+/* app */
+header.top{background:var(--paper);border-bottom:1px solid var(--rule)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.top img{width:120px;display:block}
+.who{font-size:14px;color:var(--slate);text-align:right}
+.who strong{color:var(--ink)}
+.who .row{justify-content:flex-end;margin-top:6px}
+nav.tabs{background:var(--paper);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:5}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:14px 14px 11px;font-weight:600;color:var(--slate);cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--red)}
+.badge{display:inline-block;min-width:20px;padding:0 6px;border-radius:10px;background:var(--red);color:#fff;font-size:12px;line-height:20px;text-align:center;margin-left:6px}
+main{padding:28px 0 80px}
+.banner{background:#FFF8E5;border-left:4px solid var(--warn);padding:12px 16px;margin-bottom:22px;font-size:15px}
+.banner.std{background:#EEF4FF;border-left-color:#2B5DB8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.panel{background:var(--paper);padding:22px 22px 20px;border-top:3px solid var(--ink)}
+.panel.red{border-top-color:var(--red)}
+.panel h2{font-size:22px;margin-bottom:12px}
+.panel h3{font-size:17px;margin:16px 0 6px}
+.panel ul,.panel ol{margin:0;padding-left:20px}
+.panel li{margin:4px 0}
+.muted{color:var(--grey);font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--paper);padding:14px 16px;border-left:3px solid var(--red)}
+.kpi b{display:block;font-size:28px;font-variation-settings:"wdth" 90}
+.kpi span{font-size:13px;color:var(--slate);text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;background:var(--paper);font-size:14px}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--slate);background:var(--paper)}
+.tablewrap{overflow-x:auto}
+.pill{display:inline-block;padding:2px 9px;border-radius:12px;font-size:12px;font-weight:600;background:var(--stone)}
+.pill.new{background:var(--red);color:#fff}
+.lead-detail{background:#FBFAF8}
+.lead-detail td{padding:14px 16px}
+.notes{margin:8px 0 10px;padding:0;list-style:none}
+.notes li{border-left:2px solid var(--rule);padding:2px 0 2px 10px;margin:6px 0}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.filters select,.filters input{width:auto;padding:8px 10px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:3px;font-size:14px;z-index:20}
+.secret{font-family:ui-monospace,Menlo,monospace;background:var(--stone);padding:8px 10px;word-break:break-all;margin:8px 0}
+@media (max-width:640px){.who{text-align:left}.who .row{justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- Sign-in -->
+<section class="gate hidden" id="gate">
+  <div class="card">
+    <img src="logo.png" alt="Red Rock Lending">
+    <div id="g-login">
+      <h1>Back office</h1>
+      <p>Sign in with your company email.</p>
+      <form id="f-login">
+        <label for="l-email">Company email</label>
+        <input id="l-email" type="email" autocomplete="username" required>
+        <label for="l-pw">Password</label>
+        <input id="l-pw" type="password" autocomplete="current-password" required>
+        <label class="show"><input type="checkbox" data-show="l-pw"> Show password</label>
+        <div class="row" style="margin-top:16px"><button class="btn" type="submit">Sign in</button></div>
+      </form>
+      <p class="muted" style="margin-top:16px">Forgot your password? Ask Victoria or A.J. for a temporary one.</p>
+    </div>
+    <div id="g-invite" class="hidden">
+      <h1>Choose your password</h1>
+      <p id="inv-who">Checking your sign-in link…</p>
+      <form id="f-invite">
+        <label for="i-pw">New password</label>
+        <input id="i-pw" type="password" autocomplete="new-password" required>
+        <label for="i-pw2">Repeat it</label>
+        <input id="i-pw2" type="password" autocomplete="new-password" required>
+        <label class="show"><input type="checkbox" data-show="i-pw,i-pw2"> Show passwords</label>
+        <p class="muted" style="margin:10px 0 0">At least 10 characters with a number. Type one you will remember — don't accept a password your browser invents.</p>
+        <div class="row" style="margin-top:16px"><button class="btn" type="submit">Save and open the back office</button></div>
+      </form>
+    </div>
+    <div id="g-change" class="hidden">
+      <h1>Choose your own password</h1>
+      <p>You signed in with a temporary password. Pick your own to continue.</p>
+      <form id="f-change">
+        <label for="c-cur">Temporary password</label>
+        <input id="c-cur" type="password" autocomplete="current-password" required>
+        <label for="c-pw">New password</label>
+        <input id="c-pw" type="password" autocomplete="new-password" required>
+        <label for="c-pw2">Repeat it</label>
+        <input id="c-pw2" type="password" autocomplete="new-password" required>
+        <label class="show"><input type="checkbox" data-show="c-cur,c-pw,c-pw2"> Show passwords</label>
+        <div class="row" style="margin-top:16px"><button class="btn" type="submit">Save</button><button class="btn ghost hidden" type="button" id="c-cancel">Cancel</button></div>
+      </form>
+    </div>
+    <div class="msg" id="g-msg" role="status"></div>
+  </div>
+</section>
+
+<!-- App -->
+<div id="app" class="hidden">
+  <header class="top"><div class="wrap">
+    <a href="/"><img src="logo.png" alt="Red Rock Lending"></a>
+    <div class="who">
+      <div>Signed in as <strong id="me-name"></strong> · <span id="me-role"></span></div>
+      <div class="row">
+        <span id="view-switch" class="hidden"><button class="btn small ghost" id="btn-view"></button></span>
+        <button class="btn small ghost" id="btn-pw">Change password</button>
+        <button class="btn small" id="btn-out">Sign out</button>
+      </div>
+    </div>
+  </div></header>
+  <nav class="tabs" aria-label="Back office"><div class="wrap" role="tablist" id="tabs"></div></nav>
+  <main><div class="wrap">
+    <div class="banner std hidden" id="std-banner">Standard view — this is exactly what a loan officer sees. <a href="#" id="back-admin">Back to Admin view</a></div>
+    <div class="banner" id="status-banner"></div>
+    <div id="views"></div>
+  </div></main>
+</div>
+<div class="toast hidden" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var API = (location.hostname === 'localhost' && window.RRL_API) ? window.RRL_API : 'https://rrl-portal-auth.andrewjlash.workers.dev';
+var KEY = 'rrl_token', VIEWKEY = 'rrl_view';
+var S = { token: null, me: null, data: null, crm: null, view: 'admin', tab: 'home' };
+var $ = function(id){ return document.getElementById(id); };
+function ss(k, v){ try{ if(v === undefined) return sessionStorage.getItem(k); if(v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); }catch(e){ return null; } }
+
+/* safe DOM builder: text only, never innerHTML with data */
+function el(tag, attrs, kids){
+  var n = document.createElement(tag);
+  if (attrs) for (var k in attrs){ var v = attrs[k]; if (v == null) continue;
+    if (k === 'text') n.textContent = v; else if (k === 'class') n.className = v;
+    else if (k.slice(0,2) === 'on') n.addEventListener(k.slice(2), v); else n.setAttribute(k, v); }
+  (kids || []).forEach(function(c){ if (c == null) return; n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return n;
+}
+function toast(t){ var x = $('toast'); x.textContent = t; x.classList.remove('hidden'); clearTimeout(toast._t); toast._t = setTimeout(function(){ x.classList.add('hidden'); }, 3200); }
+function msg(t, ok){ var m = $('g-msg'); m.textContent = t || ''; m.className = 'msg ' + (ok ? 'ok' : 'err'); }
+
+function call(path, body, opts){
+  opts = opts || {};
+  var h = { 'Content-Type': 'application/json' };
+  if (S.token) h.Authorization = 'Bearer ' + S.token;
+  return fetch(API + path, { method: body ? 'POST' : 'GET', headers: h, body: body ? JSON.stringify(body) : undefined })
+    .then(function(r){
+      if (opts.raw) return r;
+      return r.json().catch(function(){ return {}; }).then(function(j){
+        if (r.status === 401 && S.token && !opts.quiet) { signOutLocal('Your session ended. Sign in again.'); throw new Error('signed out'); }
+        if (j && j.must_change && S.token) { showGate('change'); throw new Error('must change'); }
+        if (!r.ok) { var e = new Error(j.error || ('Error ' + r.status)); e.status = r.status; throw e; }
+        return j;
+      });
+    });
+}
+
+/* ---------- gate ---------- */
+function showGate(which){
+  $('app').classList.add('hidden'); $('gate').classList.remove('hidden');
+  ['login','invite','change'].forEach(function(w){ $('g-' + w).classList.toggle('hidden', w !== which); });
+  $('c-cancel').classList.toggle('hidden', !(which === 'change' && S.me && !S.me.must_change));
+  msg('');
+}
+document.querySelectorAll('[data-show]').forEach(function(cb){
+  cb.addEventListener('change', function(){ cb.getAttribute('data-show').split(',').forEach(function(id){ $(id).type = cb.checked ? 'text' : 'password'; }); });
+});
+$('f-login').addEventListener('submit', function(e){
+  e.preventDefault();
+  var email = $('l-email').value.trim();
+  if (email.indexOf('@') < 0) return msg('Use your full company email address.');
+  msg('Signing in…', true);
+  call('/auth/login', { email: email, password: $('l-pw').value }).then(function(j){
+    S.token = j.token; ss(KEY, j.token); S.me = j.user; $('l-pw').value = '';
+    if (j.user.must_change) { showGate('change'); $('c-cur').value = ''; return; }
+    start();
+  }).catch(function(err){ msg(err.message); });
+});
+var inviteToken = null;
+$('f-invite').addEventListener('submit', function(e){
+  e.preventDefault();
+  if ($('i-pw').value !== $('i-pw2').value) return msg('The two passwords do not match.');
+  call('/auth/set-password', { token: inviteToken, password: $('i-pw').value }).then(function(j){
+    S.token = j.token; ss(KEY, j.token); S.me = j.user; inviteToken = null; start();
+  }).catch(function(err){ msg(err.message); });
+});
+$('f-change').addEventListener('submit', function(e){
+  e.preventDefault();
+  if ($('c-pw').value !== $('c-pw2').value) return msg('The two new passwords do not match.');
+  call('/auth/change-password', { current: $('c-cur').value, password: $('c-pw').value }).then(function(){
+    ['c-cur','c-pw','c-pw2'].forEach(function(id){ $(id).value = ''; });
+    if (S.me) S.me.must_change = false; toast('Password changed.'); start();
+  }).catch(function(err){ msg(err.message); });
+});
+$('c-cancel').addEventListener('click', function(){ $('gate').classList.add('hidden'); $('app').classList.remove('hidden'); });
+
+function signOutLocal(text){ S.token = null; S.me = null; S.data = null; S.crm = null; ss(KEY, null); showGate('login'); if (text) msg(text); }
+$('btn-out').addEventListener('click', function(){ call('/auth/logout', {}, { quiet: true }).catch(function(){}).then(function(){ signOutLocal(''); }); });
+$('btn-pw').addEventListener('click', function(){ showGate('change'); });
+
+/* ---------- app ---------- */
+function isAdmin(){ return S.me && S.me.role === 'admin'; }
+function adminView(){ return isAdmin() && S.view === 'admin'; }
+function tabsFor(){
+  var t = [['home','Home'],['leads','Website leads'],['docs','Document checklists'],['work','How a loan moves'],['market','Marketing & compliance'],['contacts','Contacts']];
+  if (adminView()) t.push(['admin','Admin']);
+  return t;
+}
+function renderTabs(){
+  var box = $('tabs'); box.textContent = '';
+  var newCount = S.data && S.data.lead_counts && S.data.lead_counts['new'] || 0;
+  tabsFor().forEach(function(t){
+    var b = el('button', { role: 'tab', 'aria-selected': String(S.tab === t[0]), onclick: function(){ S.tab = t[0]; render(); } }, [t[1]]);
+    if (t[0] === 'leads' && newCount) b.appendChild(el('span', { class: 'badge', text: String(newCount) }));
+    box.appendChild(b);
+  });
+}
+function render(){
+  if (!tabsFor().some(function(t){ return t[0] === S.tab; })) S.tab = 'home';
+  renderTabs();
+  $('std-banner').classList.toggle('hidden', !(isAdmin() && S.view === 'standard'));
+  $('view-switch').classList.toggle('hidden', !isAdmin());
+  $('btn-view').textContent = S.view === 'admin' ? 'Standard view' : 'Admin view';
+  var v = $('views'); v.textContent = '';
+  var fn = { home: vHome, leads: vLeads, docs: vDocs, work: vWork, market: vMarket, contacts: vContacts, admin: vAdmin }[S.tab];
+  fn(v);
+  call('/auth/log', { page: '/portal#' + S.tab }, { quiet: true }).catch(function(){});
+}
+$('btn-view').addEventListener('click', function(){ S.view = S.view === 'admin' ? 'standard' : 'admin'; ss(VIEWKEY, S.view); render(); });
+$('back-admin').addEventListener('click', function(e){ e.preventDefault(); S.view = 'admin'; ss(VIEWKEY, 'admin'); render(); });
+
+function panel(title, kids, cls){ return el('div', { class: 'panel ' + (cls || '') }, [el('h2', { text: title })].concat(kids)); }
+function list(items, ordered){ return el(ordered ? 'ol' : 'ul', null, (items || []).map(function(i){ return el('li', { text: i }); })); }
+function statusTable(rows){ return el('ul', null, (rows || []).map(function(r){ return el('li', null, [el('strong', { text: r.name }), ' — ', r.status]); })); }
+var C = function(){ return (S.data && S.data.content) || {}; };
+var LABEL = { new: 'New', contacted: 'Contacted', docs_requested: 'Docs requested', with_processor: 'With processor', closed: 'Closed', not_a_fit: 'Not a fit' };
+
+function vHome(v){
+  var c = C(), k = (S.data && S.data.lead_counts) || {};
+  v.appendChild(el('h1', { text: 'Welcome, ' + (S.me.name || '').split(' ')[0], style: 'font-size:32px;margin-bottom:8px' }));
+  v.appendChild(el('p', { text: c.welcome || '', style: 'margin:0 0 20px;color:var(--slate);max-width:760px' }));
+  var kp = el('div', { class: 'kpis' });
+  ['new','contacted','docs_requested','with_processor'].forEach(function(s){ kp.appendChild(el('div', { class: 'kpi' }, [el('b', { text: String(k[s] || 0) }), el('span', { text: LABEL[s] })])); });
+  v.appendChild(kp);
+  v.appendChild(el('div', { class: 'grid' }, [
+    panel('Start here', [list(c.start_here, true)], 'red'),
+    panel('Tools', [statusTable(c.tools)]),
+    panel('Policies and manuals', [statusTable(c.compliance), el('p', { class: 'muted', text: 'Updated ' + (c.updated || '') })]),
+  ]));
+}
+function vDocs(v){
+  var c = C();
+  v.appendChild(el('p', { text: 'What to ask every borrower for before a file goes to the processor. Collect documents only through the approved secure channel.', style: 'margin:0 0 18px;color:var(--slate)' }));
+  v.appendChild(el('div', { class: 'grid' }, (c.checklists || []).map(function(cl, i){
+    var kids = [];
+    if (cl.items && cl.items.length) kids.push(list(cl.items)); else kids.push(el('p', { class: 'muted', text: 'Coming soon.' }));
+    if (cl.note) kids.push(el('p', { class: 'muted', text: cl.note, style: 'margin-top:10px' }));
+    return panel(cl.title, kids, i === 0 ? 'red' : '');
+  })));
+}
+function vWork(v){
+  var c = C();
+  v.appendChild(panel('How a loan moves', [el('ol', null, (c.workflow || []).map(function(w){ return el('li', null, [el('strong', { text: w.step }), ' — ', w.text]); }))], 'red'));
+}
+function vMarket(v){
+  var c = C();
+  v.appendChild(el('div', { class: 'grid' }, [
+    panel('Advertising rules', [list(c.marketing)], 'red'),
+    panel('Brand approval', [el('p', { text: 'Send every flyer, post or email blast to Elsie before it goes out. Include where and when it will run.' }),
+      el('a', { class: 'btn small', href: 'mailto:elsie.benitez@goyaldecoster.com?subject=' + encodeURIComponent('Red Rock Lending — brand approval request'), text: 'Email Elsie for approval' })]),
+  ]));
+}
+function vContacts(v){
+  var c = C();
+  v.appendChild(el('div', { class: 'grid' }, (c.contacts || []).map(function(p){
+    var kids = [el('p', { class: 'muted', text: p.role, style: 'margin:0 0 8px' })];
+    if (p.email) kids.push(el('div', null, [el('a', { href: 'mailto:' + p.email, text: p.email })]));
+    if (p.phone) kids.push(el('div', null, [el('a', { href: 'tel:+1' + p.phone.replace(/\D/g, ''), text: p.phone })]));
+    return panel(p.name, kids);
+  })));
+}
+
+/* ---------- leads (CRM) ---------- */
+var leadFilter = { status: 'open', q: '' }, openLead = null;
+function vLeads(v){
+  v.appendChild(el('p', { class: 'muted', text: 'Loading leads…' }));
+  call('/crm/leads').then(function(j){ S.crm = j; v.textContent = ''; drawLeads(v); }).catch(function(e){ v.textContent = ''; v.appendChild(el('p', { text: e.message })); });
+}
+function drawLeads(v){
+  var j = S.crm, users = {}; (j.users || []).forEach(function(u){ users[u.email] = u.name || u.email; });
+  var f = el('div', { class: 'filters' });
+  var sel = el('select', { 'aria-label': 'Status filter', onchange: function(){ leadFilter.status = sel.value; redraw(); } },
+    [['open','Open leads'],['all','All leads']].concat(j.statuses.map(function(s){ return [s, LABEL[s]]; })).map(function(o){ var op = el('option', { value: o[0], text: o[1] }); if (o[0] === leadFilter.status) op.selected = true; return op; }));
+  var q = el('input', { type: 'text', placeholder: 'Search name, email, phone', value: leadFilter.q, oninput: function(){ leadFilter.q = q.value; redraw(); } });
+  f.appendChild(sel); f.appendChild(q);
+  f.appendChild(el('button', { class: 'btn small ghost', text: 'Refresh', onclick: function(){ S.tab = 'leads'; render(); } }));
+  if (adminView()) f.appendChild(el('button', { class: 'btn small ghost', text: 'Export CSV', onclick: exportCsv }));
+  v.appendChild(f);
+  var wrap = el('div', { class: 'tablewrap' }); v.appendChild(wrap);
+  if (!isAdmin() && S.me.role === 'loan_officer') v.appendChild(el('p', { class: 'muted', text: 'You see the leads assigned to you. Victoria assigns new website leads.', style: 'margin-top:10px' }));
+  function redraw(){
+    wrap.textContent = '';
+    var rows = j.leads.filter(function(l){
+      if (leadFilter.status === 'open' && (l.status === 'closed' || l.status === 'not_a_fit')) return false;
+      if (leadFilter.status !== 'open' && leadFilter.status !== 'all' && l.status !== leadFilter.status) return false;
+      var s = (l.first + ' ' + l.last + ' ' + l.email + ' ' + l.phone).toLowerCase();
+      return !leadFilter.q || s.indexOf(leadFilter.q.toLowerCase()) >= 0;
+    });
+    if (!rows.length) { wrap.appendChild(el('p', { class: 'muted', text: j.leads.length ? 'No leads match.' : 'No leads yet. New website inquiries land here automatically.' })); return; }
+    var t = el('table'), head = el('tr');
+    ['Received','Name','Contact','Interested in','Status','Assigned to'].forEach(function(h){ head.appendChild(el('th', { text: h })); });
+    t.appendChild(el('thead', null, [head]));
+    var tb = el('tbody'); t.appendChild(tb);
+    rows.forEach(function(l){
+      var tr = el('tr', { style: 'cursor:pointer', onclick: function(){ openLead = openLead === l.id ? null : l.id; redraw(); } }, [
+        el('td', { text: new Date(l.created_at).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) }),
+        el('td', null, [el('strong', { text: (l.first + ' ' + l.last).trim() })]),
+        el('td', null, [el('div', { text: l.email }), el('div', { class: 'muted', text: l.phone || '' })]),
+        el('td', { text: l.interest || '—' }),
+        el('td', null, [el('span', { class: 'pill ' + l.status, text: LABEL[l.status] || l.status })]),
+        el('td', { text: l.assigned_to ? (users[l.assigned_to] || l.assigned_to) : 'Unassigned' }),
+      ]);
+      tb.appendChild(tr);
+      if (openLead === l.id) tb.appendChild(leadDetail(l, users));
+    });
+    wrap.appendChild(t);
+  }
+  redraw();
+}
+function leadDetail(l, users){
+  var notes = (S.crm.notes || []).filter(function(n){ return n.lead_id === l.id; });
+  var st = el('select', null, S.crm.statuses.map(function(s){ var o = el('option', { value: s, text: LABEL[s] }); if (s === l.status) o.selected = true; return o; }));
+  var as = null;
+  if (adminView()) {
+    as = el('select', null, [el('option', { value: '', text: 'Unassigned' })].concat((S.crm.users || []).map(function(u){ var o = el('option', { value: u.email, text: u.name || u.email }); if (u.email === l.assigned_to) o.selected = true; return o; })));
+  }
+  var note = el('textarea', { rows: '2', placeholder: 'Add a note (call made, documents asked for, next step)…' });
+  var save = el('button', { class: 'btn small', text: 'Save', onclick: function(e){
+    e.stopPropagation();
+    var body = { id: l.id };
+    if (st.value !== l.status) body.status = st.value;
+    if (as && as.value !== (l.assigned_to || '')) body.assigned_to = as.value;
+    if (note.value.trim()) body.note = note.value.trim();
+    if (Object.keys(body).length === 1) return toast('Nothing to save.');
+    save.disabled = true;
+    call('/crm/leads/update', body).then(function(){ toast('Saved.'); return call('/portal/data'); }).then(function(d){ S.data = d; S.tab = 'leads'; render(); })
+      .catch(function(err){ save.disabled = false; toast(err.message); });
+  } });
+  var box = el('div', { onclick: function(e){ e.stopPropagation(); } }, [
+    l.message ? el('p', null, [el('strong', { text: 'Their message: ' }), l.message]) : null,
+    el('p', { class: 'muted', text: 'Source: ' + (l.source || 'website') }),
+    notes.length ? el('ul', { class: 'notes' }, notes.map(function(n){ return el('li', null, [el('span', { class: 'muted', text: new Date(n.ts).toLocaleString() + ' · ' + (users[n.email] || n.email) + ' — ' }), n.note]); })) : null,
+    el('div', { class: 'row', style: 'margin-top:8px' }, [el('label', { text: 'Status', style: 'margin:0' }), st].concat(as ? [el('label', { text: 'Assign to', style: 'margin:0 0 0 8px' }), as] : [])),
+    el('div', { style: 'margin-top:10px' }, [note]),
+    el('div', { class: 'row', style: 'margin-top:10px' }, [save,
+      el('a', { class: 'btn small ghost', href: 'mailto:' + l.email, text: 'Email', onclick: function(e){ e.stopPropagation(); } }),
+      l.phone ? el('a', { class: 'btn small ghost', href: 'tel:' + l.phone.replace(/[^\d+]/g, ''), text: 'Call', onclick: function(e){ e.stopPropagation(); } }) : null]),
+  ]);
+  return el('tr', { class: 'lead-detail' }, [el('td', { colspan: '6' }, [box])]);
+}
+function exportCsv(){
+  call('/crm/leads.csv', null, { raw: true }).then(function(r){ if (!r.ok) throw new Error('Export failed'); return r.blob(); }).then(function(b){
+    var a = el('a', { href: URL.createObjectURL(b), download: 'red-rock-lending-leads.csv' }); document.body.appendChild(a); a.click(); a.remove();
+  }).catch(function(e){ toast(e.message); });
+}
+
+/* ---------- admin ---------- */
+function vAdmin(v){
+  var usersBox = el('div', { class: 'tablewrap' }), logBox = el('div', { class: 'tablewrap' }), out = el('div');
+  var name = el('input', { type: 'text', placeholder: 'Full name' }), email = el('input', { type: 'email', placeholder: 'name@redrocklendingusa.com' });
+  var role = el('select', null, [['loan_officer','Loan Officer'],['processor','Processor'],['admin','Admin']].map(function(r){ return el('option', { value: r[0], text: r[1] }); }));
+  v.appendChild(el('div', { class: 'grid' }, [
+    panel('Add a login', [
+      el('label', { text: 'Name' }), name, el('label', { text: 'Company email' }), email, el('label', { text: 'Role' }), role,
+      el('div', { class: 'row', style: 'margin-top:14px' }, [el('button', { class: 'btn', text: 'Create login', onclick: function(){
+        call('/admin/users/invite', { email: email.value.trim(), name: name.value.trim(), role: role.value }).then(function(j){
+          showSecret(out, 'Sign-in link for ' + email.value.trim() + ' (one use, 72 hours). Send it to them yourself:', j.link);
+          name.value = ''; email.value = ''; loadUsers();
+        }).catch(function(e){ toast(e.message); });
+      } })]), out,
+    ], 'red'),
+    panel('Roles', [el('ul', null, [
+      el('li', null, [el('strong', { text: 'Loan Officer' }), ' — the back office and the leads assigned to them.']),
+      el('li', null, [el('strong', { text: 'Processor' }), ' — the back office and every lead; no login management.']),
+      el('li', null, [el('strong', { text: 'Admin' }), ' — everything: all leads, assigning, export, logins, access log.']),
+    ])]),
+  ]));
+  v.appendChild(el('h2', { text: 'Logins', style: 'font-size:22px;margin:28px 0 12px' })); v.appendChild(usersBox);
+  v.appendChild(el('h2', { text: 'Access log', style: 'font-size:22px;margin:28px 0 12px' })); v.appendChild(logBox);
+  function loadUsers(){
+    call('/admin/users').then(function(j){
+      usersBox.textContent = '';
+      var t = el('table'), h = el('tr'); ['Name','Email','Role','Status','Last sign-in','Actions'].forEach(function(x){ h.appendChild(el('th', { text: x })); });
+      t.appendChild(el('thead', null, [h])); var tb = el('tbody'); t.appendChild(tb);
+      j.users.forEach(function(u){
+        var rs = el('select', { onchange: function(){ call('/admin/users/role', { email: u.email, role: rs.value }).then(function(){ toast('Role changed.'); loadUsers(); }).catch(function(e){ toast(e.message); loadUsers(); }); } },
+          j.roles.map(function(r){ var o = el('option', { value: r, text: j.role_labels[r] }); if (r === u.role) o.selected = true; return o; }));
+        var acts = el('div', { class: 'row' }, [
+          el('button', { class: 'btn small ghost', text: 'New link', onclick: function(){ call('/admin/users/link', { email: u.email }).then(function(r){ showSecret(out, 'New sign-in link for ' + u.email + ' (one use, 72 hours):', r.link); window.scrollTo(0, 0); }).catch(function(e){ toast(e.message); }); } }),
+          el('button', { class: 'btn small ghost', text: 'Temp password', onclick: function(){ if (!confirm('Give ' + u.email + ' a temporary password? Their current password stops working.')) return; call('/admin/users/temp-password', { email: u.email }).then(function(r){ showSecret(out, 'Temporary password for ' + u.email + ' — text it to them. They will choose their own at sign-in:', r.temp_password); window.scrollTo(0, 0); loadUsers(); }).catch(function(e){ toast(e.message); }); } }),
+          u.email === S.me.email ? null : el('button', { class: 'btn small ghost', text: u.status === 'deactivated' ? 'Reactivate' : 'Deactivate', onclick: function(){ call('/admin/users/status', { email: u.email, status: u.status === 'deactivated' ? 'active' : 'deactivated' }).then(function(){ loadUsers(); }).catch(function(e){ toast(e.message); }); } }),
+        ]);
+        tb.appendChild(el('tr', null, [el('td', { text: u.name || '' }), el('td', { text: u.email }), el('td', null, [rs]),
+          el('td', { text: u.status + (u.must_change ? ' · must choose password' : '') }), el('td', { text: u.last_login ? new Date(u.last_login).toLocaleString() : '—' }), el('td', null, [acts])]));
+      });
+      usersBox.appendChild(t);
+    }).catch(function(e){ usersBox.textContent = e.message; });
+  }
+  function loadLog(){
+    call('/admin/log').then(function(j){
+      logBox.textContent = '';
+      var t = el('table'), h = el('tr'); ['When','Who','What','Detail'].forEach(function(x){ h.appendChild(el('th', { text: x })); });
+      t.appendChild(el('thead', null, [h])); var tb = el('tbody'); t.appendChild(tb);
+      j.log.slice(0, 150).forEach(function(r){ tb.appendChild(el('tr', null, [el('td', { text: new Date(r.ts).toLocaleString() }), el('td', { text: r.email }), el('td', { text: r.action }), el('td', { text: r.detail })])); });
+      logBox.appendChild(t);
+    }).catch(function(e){ logBox.textContent = e.message; });
+  }
+  loadUsers(); loadLog();
+}
+function showSecret(box, label, value){
+  box.textContent = '';
+  var code = el('div', { class: 'secret', text: value });
+  box.appendChild(el('p', { text: label, style: 'margin:14px 0 0;font-weight:600' }));
+  box.appendChild(code);
+  box.appendChild(el('button', { class: 'btn small ghost', text: 'Copy', onclick: function(){ (navigator.clipboard ? navigator.clipboard.writeText(value) : Promise.reject()).then(function(){ toast('Copied.'); }, function(){ toast('Select and copy it by hand.'); }); } }));
+}
+
+/* ---------- start ---------- */
+function start(){
+  call('/portal/data').then(function(d){
+    S.data = d; S.me = d.me;
+    $('me-name').textContent = d.me.name || d.me.email; $('me-role').textContent = d.me.role_label;
+    $('status-banner').textContent = (d.content && d.content.status_note) || '';
+    $('status-banner').classList.toggle('hidden', !(d.content && d.content.status_note));
+    S.view = isAdmin() ? (ss(VIEWKEY) || 'admin') : 'standard';
+    $('gate').classList.add('hidden'); $('app').classList.remove('hidden');
+    render();
+  }).catch(function(e){ if (e.message !== 'signed out' && e.message !== 'must change') signOutLocal(e.message); });
+}
+function boot(){
+  var m = location.hash.match(/invite=([a-f0-9]{48})/);
+  if (m) {
+    inviteToken = m[1]; history.replaceState(null, '', location.pathname);
+    ss(KEY, null); S.token = null; showGate('invite');
+    call('/auth/set-password', { token: inviteToken, check: true }).then(function(j){
+      $('inv-who').textContent = 'Setting the password for ' + (j.name ? j.name + ' — ' : '') + j.email + '.';
+    }).catch(function(e){ $('inv-who').textContent = ''; msg(e.message); $('f-invite').classList.add('hidden'); });
+    return;
+  }
+  S.token = ss(KEY);
+  if (!S.token) return showGate('login');
+  call('/auth/me', null, { quiet: true }).then(function(j){ S.me = j.user; if (j.user.must_change) return showGate('change'); start(); })
+    .catch(function(){ signOutLocal(''); });
+}
+setInterval(function(){ if (S.token && !document.hidden) call('/auth/me').catch(function(){}); }, 10 * 60 * 1000);
+document.addEventListener('visibilitychange', function(){ if (!document.hidden && S.token) call('/auth/me').catch(function(){}); });
+boot();
+})();
+</script>
+</body>
+</html>

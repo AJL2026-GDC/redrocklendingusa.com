@@ -434,6 +434,8 @@ footer .legal .eho svg{width:22px;height:22px}
 
 </main>
 <script>
+/* LEADS v1 (Nov 9 2026): copy each inquiry into the Red Rock Lending back office (rrl-portal-auth) as well as the FormSubmit email. */
+(function(){var f=document.getElementById('lead');if(!f)return;f.addEventListener('submit',function(){try{var v=function(n){var e=f.elements[n];return e?e.value:'';};fetch('https://rrl-portal-auth.andrewjlash.workers.dev/leads',{method:'POST',keepalive:true,mode:'cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({first:v('firstname'),last:v('lastname'),email:v('email'),phone:v('phone'),interest:v('loan_type'),message:v('message'),_honey:v('_honey'),source:'redrocklendingusa.com contact form'})}).catch(function(){});}catch(e){}});})();
 if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t=document.getElementById('thanks');if(f&&t){f.style.display='none';t.style.display='block';}}
 </script>
 
@@ -443,7 +445,7 @@ if(location.search.indexOf('sent=1')>-1){var f=document.getElementById('lead'),t
       <img src="logo.png" alt="Red Rock Lending">
       <div class="cols">
         <div><strong>Financing options</strong><a href="#programs">Investment</a><a href="#programs">Commercial</a></div>
-        <div><strong>Company</strong><a href="#about">Leadership</a><a href="#group">Red Rock Holdings</a><a href="https://www.goyaldecoster.com" rel="noopener">Goyal &amp; DeCoster Realty</a><a href="#contact">Contact us</a></div>
+        <div><strong>Company</strong><a href="#about">Leadership</a><a href="#group">Red Rock Holdings</a><a href="https://www.goyaldecoster.com" rel="noopener">Goyal &amp; DeCoster Realty</a><a href="#contact">Contact us</a><a href="/portal.html" rel="nofollow">Team sign-in</a></div>
         <div><strong>Office</strong><span>121 South Orange Avenue, Suite 1100N<br>Orlando, Florida 32801</span></div>
       </div>
     </div>
