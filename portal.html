@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
-<!-- RRL PORTAL v1.0 (Nov 9 2026). Shell only: no content lives in this file. Everything is served by the login service after sign-in. -->
+<!-- RRL PORTAL v1.1 (Nov 9 2026: approvals and compliance go to Victoria). Shell only: no content lives in this file. Everything is served by the login service after sign-in. -->
 <style>
 :root{--red:#CA1E17;--red-deep:#9E140F;--ink:#1A1A1A;--grey:#838383;--slate:#5B5B5B;--stone:#F3F1EE;--paper:#fff;--rule:#DAD6D0;--ok:#1F7A3A;--warn:#9A6400}
 *{box-sizing:border-box}
@@ -305,8 +305,8 @@ function vMarket(v){
   var c = C();
   v.appendChild(el('div', { class: 'grid' }, [
     panel('Advertising rules', [list(c.marketing)], 'red'),
-    panel('Brand approval', [el('p', { text: 'Send every flyer, post or email blast to Elsie before it goes out. Include where and when it will run.' }),
-      el('a', { class: 'btn small', href: 'mailto:elsie.benitez@goyaldecoster.com?subject=' + encodeURIComponent('Red Rock Lending — brand approval request'), text: 'Email Elsie for approval' })]),
+    panel('Compliance and brand approval', [el('p', { text: 'Send every flyer, post or email blast to Victoria for compliance and brand approval before it goes out. Include where and when it will run.' }),
+      el('a', { class: 'btn small', href: 'mailto:victoria.ralicki@redrocklendingusa.com?subject=' + encodeURIComponent('Red Rock Lending — compliance and brand approval request'), text: 'Email Victoria for approval' })]),
   ]));
 }
 function vContacts(v){
