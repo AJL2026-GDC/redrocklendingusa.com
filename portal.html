@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
-<!-- RRL PORTAL v1.1 (Nov 9 2026: approvals and compliance go to Victoria). Shell only: no content lives in this file. Everything is served by the login service after sign-in. -->
+<!-- RRL PORTAL v1.2 (Nov 11 2026: Commercial loans panel for admins and people an admin switches on; v1.1 Nov 9: approvals and compliance go to Victoria). Shell only: no content lives in this file. Everything is served by the login service after sign-in. -->
 <style>
 :root{--red:#CA1E17;--red-deep:#9E140F;--ink:#1A1A1A;--grey:#838383;--slate:#5B5B5B;--stone:#F3F1EE;--paper:#fff;--rule:#DAD6D0;--ok:#1F7A3A;--warn:#9A6400}
 *{box-sizing:border-box}
@@ -82,7 +82,45 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--slat
 .filters select,.filters input{width:auto;padding:8px 10px}
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:3px;font-size:14px;z-index:20}
 .secret{font-family:ui-monospace,Menlo,monospace;background:var(--stone);padding:8px 10px;word-break:break-all;margin:8px 0}
-@media (max-width:640px){.who{text-align:left}.who .row{justify-content:flex-start}}
+/* commercial loan summary sheet (shown only to admins and people an admin has switched on) */
+.sheet{background:#fff;max-width:8.5in;margin:0 auto;padding:.36in .5in .32in;border-top:.09in solid var(--red);box-shadow:0 10px 30px rgba(0,0,0,.08);font-size:13px;line-height:1.3}
+.sh-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:9px;border-bottom:2px solid var(--ink)}
+.sh-head img{height:58px;width:auto;display:block}
+.sh-head h1{font-size:28px}
+.sh-sub{font-size:12px;color:var(--slate);margin-top:2px}
+.sh-tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--red);color:var(--red);padding:3px 8px;white-space:nowrap}
+.sh-inst{background:var(--stone);border-left:4px solid var(--red);padding:6px 10px;margin:9px 0 2px;font-size:12.5px;font-weight:600}
+.sh-row{display:grid;grid-template-columns:172px minmax(0,1fr);gap:10px;border-bottom:1px solid var(--rule);padding:9px 0 10px}
+.sh-q{display:flex;gap:7px;align-items:flex-start}
+.sh-n{flex:0 0 20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11.5px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.sh-l{font-weight:700;font-size:13.5px;line-height:1.2}
+.sh-h{display:block;font-weight:400;font-size:11px;color:var(--slate);margin-top:2px}
+.sh-a{display:flex;flex-direction:column;gap:7px;justify-content:center;min-width:0}
+.sh-ln{display:flex;align-items:flex-end;gap:8px;min-width:0;flex-wrap:wrap}
+.sh-part{display:flex;align-items:flex-end;gap:5px;flex:1 1 150px;min-width:0}
+.sh-part.s{flex:0 0 125px}.sh-part.m{flex:0 0 175px}.sh-part.money{flex:0 0 200px}.sh-part.fix{flex:0 0 auto}.sh-part.top{align-items:flex-start}
+.sh-lbl{font-size:11px;color:var(--slate);white-space:nowrap;padding-bottom:2px}
+.sheet input[type=text]{flex:1;min-width:30px;width:auto;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:1px 3px;font-weight:600;font-size:13px;background:transparent}
+.sheet input[type=text]:focus{background:#FFF8E5;border-color:var(--ink);outline:none}
+.sh-cur{font-weight:700;padding-bottom:2px}
+.sh-opt{display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:400;white-space:nowrap;margin:0 10px 0 0;cursor:pointer}
+.sh-opt input{width:13px;height:13px;margin:0;accent-color:var(--ink)}
+.sh-lines{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.sh-foot{border-top:2px solid var(--ink);padding-top:7px;display:flex;justify-content:space-between;gap:14px;align-items:flex-end;font-size:11px;color:var(--slate);flex-wrap:wrap}
+.sh-foot .sh-part{flex:0 0 auto;color:var(--ink)}
+.sh-foot input[type=text]{flex:0 0 140px;width:140px}
+@media print{
+  @page{size:Letter;margin:0}
+  body{background:#fff}
+  body::before,header.top,nav.tabs,.banner,.toast,.gate,.no-print{display:none!important}
+  main{padding:0}.wrap{max-width:none;padding:0}
+  .sheet{box-shadow:none;max-width:none;width:8.5in;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet input[type=text]:focus{background:transparent}
+}
+@media (max-width:640px){.who{text-align:left}.who .row{justify-content:flex-start}
+  .sheet{padding:18px 14px}.sh-head{flex-wrap:wrap}.sh-head h1{font-size:23px}.sh-row{grid-template-columns:minmax(0,1fr)}
+  .sh-part,.sh-part.s,.sh-part.m,.sh-part.money{flex:1 1 100%}.sh-part.fix{flex:1 1 100%;flex-wrap:wrap;row-gap:6px}
+  .sh-foot .sh-part{flex:1 1 100%}.sh-foot input[type=text]{flex:1;width:auto}}
 </style>
 </head>
 <body>
@@ -233,15 +271,19 @@ $('f-change').addEventListener('submit', function(e){
 });
 $('c-cancel').addEventListener('click', function(){ $('gate').classList.add('hidden'); $('app').classList.remove('hidden'); });
 
-function signOutLocal(text){ S.token = null; S.me = null; S.data = null; S.crm = null; ss(KEY, null); showGate('login'); if (text) msg(text); }
+function signOutLocal(text){ S.token = null; S.me = null; S.data = null; S.crm = null; CLV = {}; ss(KEY, null); showGate('login'); if (text) msg(text); }
 $('btn-out').addEventListener('click', function(){ call('/auth/logout', {}, { quiet: true }).catch(function(){}).then(function(){ signOutLocal(''); }); });
 $('btn-pw').addEventListener('click', function(){ showGate('change'); });
 
 /* ---------- app ---------- */
 function isAdmin(){ return S.me && S.me.role === 'admin'; }
 function adminView(){ return isAdmin() && S.view === 'admin'; }
+/* The login service decides who may open Commercial loans (admins, plus anyone an admin switches on) and refuses everyone else.
+   An admin looking at Standard view sees what a loan officer sees, so the tab is hidden there too. */
+function canCommercial(){ return !!(S.me && S.me.commercial) && (!isAdmin() || S.view === 'admin'); }
 function tabsFor(){
   var t = [['home','Home'],['leads','Website leads'],['docs','Document checklists'],['work','How a loan moves'],['market','Marketing & compliance'],['contacts','Contacts']];
+  if (canCommercial()) t.push(['commercial','Commercial loans']);
   if (adminView()) t.push(['admin','Admin']);
   return t;
 }
@@ -261,7 +303,7 @@ function render(){
   $('view-switch').classList.toggle('hidden', !isAdmin());
   $('btn-view').textContent = S.view === 'admin' ? 'Standard view' : 'Admin view';
   var v = $('views'); v.textContent = '';
-  var fn = { home: vHome, leads: vLeads, docs: vDocs, work: vWork, market: vMarket, contacts: vContacts, admin: vAdmin }[S.tab];
+  var fn = { home: vHome, leads: vLeads, docs: vDocs, work: vWork, market: vMarket, contacts: vContacts, commercial: vCommercial, admin: vAdmin }[S.tab];
   fn(v);
   call('/auth/log', { page: '/portal#' + S.tab }, { quiet: true }).catch(function(){});
 }
@@ -403,6 +445,98 @@ function exportCsv(){
   }).catch(function(e){ toast(e.message); });
 }
 
+/* ---------- commercial loans: one-page summary for a lender ----------
+   The form itself (fields and wording) comes from the login service and only for people allowed to see it.
+   Nothing typed here is sent anywhere or saved: it lives on the page until the person prints or signs out. */
+var CLV = {};
+function vCommercial(v){
+  v.appendChild(el('p', { class: 'muted', text: 'Loading…' }));
+  call('/portal/commercial').then(function(j){ v.textContent = ''; drawCommercial(v, j.form || {}); })
+    .catch(function(e){ v.textContent = ''; v.appendChild(el('p', { text: e.message })); });
+}
+function clText(k, label){
+  var i = el('input', { type: 'text', 'aria-label': label || k, autocomplete: 'off', oninput: function(){ CLV[k] = i.value; } });
+  if (CLV[k]) i.value = CLV[k];
+  return i;
+}
+function clBox(k, label){
+  var c = el('input', { type: 'checkbox', onchange: function(){ CLV[k] = c.checked; } });
+  c.checked = !!CLV[k];
+  return el('label', { class: 'sh-opt' }, [c, label]);
+}
+function clPart(p){
+  var lbl = p.label ? el('span', { class: 'sh-lbl', text: p.label }) : null;
+  if (p.type === 'text') return { inline: el('span', { class: 'sh-part ' + (p.size || '') }, [lbl, clText(p.k, p.label)]) };
+  if (p.type === 'money') {
+    var a = el('span', { class: 'sh-part money' }, [lbl, el('span', { class: 'sh-cur', text: '$' }), clText(p.k, p.label)]);
+    if (!p.proof) return { inline: a };
+    return { line: [a, el('span', { class: 'sh-part fix' }, [clBox(p.k + '_proof', 'Proof attached')]),
+      el('span', { class: 'sh-part' }, [el('span', { class: 'sh-lbl', text: 'File' }), clText(p.k + '_file', (p.label || '') + ' file name')])] };
+  }
+  if (p.type === 'choice') {
+    var boxes = [];
+    var kids = (p.options || []).map(function(o){
+      var c = el('input', { type: 'checkbox' }); c.checked = CLV[p.k] === o;
+      c.addEventListener('change', function(){ CLV[p.k] = c.checked ? o : ''; boxes.forEach(function(b){ if (b !== c) b.checked = false; }); });
+      boxes.push(c);
+      return el('label', { class: 'sh-opt' }, [c, o]);
+    });
+    return { inline: el('span', { class: 'sh-part fix' }, [lbl].concat(kids)) };
+  }
+  if (p.type === 'check') return { inline: el('span', { class: 'sh-part fix' }, [clBox(p.k, p.label || '')]) };
+  if (p.type === 'lines') {
+    var rows = []; for (var n = 0; n < (p.rows || 3); n++) rows.push(clText(p.k + '_' + n, (p.label || '') + ' ' + (n + 1)));
+    return { inline: el('span', { class: 'sh-part top' }, [lbl, el('span', { class: 'sh-lines' }, rows)]), top: true };
+  }
+  return {};
+}
+function clRow(f){
+  var lines = [], cur = [], top = false;
+  (f.parts || []).forEach(function(p){
+    var r = clPart(p);
+    if (p.br && cur.length) { lines.push(cur); cur = []; }
+    if (r.line) { if (cur.length) { lines.push(cur); cur = []; } lines.push(r.line); }
+    else if (r.inline) { cur.push(r.inline); if (r.top) top = true; }
+  });
+  if (cur.length) lines.push(cur);
+  return el('div', { class: 'sh-row' }, [
+    el('div', { class: 'sh-q' }, [el('span', { class: 'sh-n', text: String(f.n) }), el('span', { class: 'sh-l' }, [f.label || '', f.hint ? el('span', { class: 'sh-h', text: f.hint }) : null])]),
+    el('div', { class: 'sh-a' }, lines.map(function(l){ return el('div', { class: 'sh-ln', style: top ? 'align-items:flex-start' : null }, l); })),
+  ]);
+}
+function drawCommercial(v, f){
+  v.appendChild(el('div', { class: 'no-print' }, [
+    el('h1', { text: 'Commercial loans', style: 'font-size:32px;margin-bottom:8px' }),
+    el('p', { text: f.audience || '', style: 'margin:0 0 18px;color:var(--slate);max-width:760px' }),
+    el('div', { class: 'grid', style: 'margin-bottom:22px' }, [
+      panel('How to fill it in', [list(f.how_to || [])], 'red'),
+      panel('Print or save', [
+        el('p', { text: 'Nothing you type here is saved. Print the page, or choose “Save as PDF” in the print window, before you leave this tab or sign out.', style: 'margin:0 0 12px' }),
+        el('div', { class: 'row' }, [
+          el('button', { class: 'btn', text: 'Print or save as PDF', onclick: function(){ window.print(); } }),
+          el('button', { class: 'btn ghost', text: 'Clear the form', onclick: function(){ if (!confirm('Clear everything typed on this form?')) return; CLV = {}; S.tab = 'commercial'; render(); } }),
+        ]),
+      ]),
+    ]),
+  ]));
+  var kids = [
+    el('div', { class: 'sh-head' }, [
+      el('img', { src: 'logo.png', alt: 'Red Rock Lending' }),
+      el('div', { style: 'flex:1;padding-left:6px' }, [el('h1', { text: f.title || 'Commercial Loan Summary' }), el('div', { class: 'sh-sub', text: f.subtitle || '' })]),
+      f.status ? el('span', { class: 'sh-tag', text: f.status }) : null,
+    ]),
+    f.instruction ? el('div', { class: 'sh-inst', text: f.instruction }) : null,
+  ].concat((f.fields || []).map(clRow));
+  kids.push(el('div', { class: 'sh-foot' }, [
+    el('span', null, ['Red Rock Lending, LLC · 121 S Orange Ave, Suite 1100N, Orlando, FL 32801 · Confidential', el('br'), 'Form ' + (f.version || '') + ' · ' + (f.updated || '')]),
+    el('span', { class: 'sh-ln' }, [
+      el('span', { class: 'sh-part' }, [el('span', { class: 'sh-lbl', text: 'Prepared by' }), clText('_by', 'Prepared by')]),
+      el('span', { class: 'sh-part' }, [el('span', { class: 'sh-lbl', text: 'Date' }), clText('_date', 'Date')]),
+    ]),
+  ]));
+  v.appendChild(el('div', { class: 'sheet', id: 'cl-sheet' }, kids));
+}
+
 /* ---------- admin ---------- */
 function vAdmin(v){
   var usersBox = el('div', { class: 'tablewrap' }), logBox = el('div', { class: 'tablewrap' }), out = el('div');
@@ -422,6 +556,7 @@ function vAdmin(v){
       el('li', null, [el('strong', { text: 'Loan Officer' }), ' — the back office and the leads assigned to them.']),
       el('li', null, [el('strong', { text: 'Processor' }), ' — the back office and every lead; no login management.']),
       el('li', null, [el('strong', { text: 'Admin' }), ' — everything: all leads, assigning, export, logins, access log.']),
+      el('li', null, [el('strong', { text: 'Commercial loans' }), ' — a separate switch in the Logins table, not a role. Admins always have it. Turn it on for a partner; leave it off for everyone else.']),
     ])]),
   ]));
   v.appendChild(el('h2', { text: 'Logins', style: 'font-size:22px;margin:28px 0 12px' })); v.appendChild(usersBox);
@@ -429,7 +564,7 @@ function vAdmin(v){
   function loadUsers(){
     call('/admin/users').then(function(j){
       usersBox.textContent = '';
-      var t = el('table'), h = el('tr'); ['Name','Email','Role','Status','Last sign-in','Actions'].forEach(function(x){ h.appendChild(el('th', { text: x })); });
+      var t = el('table'), h = el('tr'); ['Name','Email','Role','Commercial loans','Status','Last sign-in','Actions'].forEach(function(x){ h.appendChild(el('th', { text: x })); });
       t.appendChild(el('thead', null, [h])); var tb = el('tbody'); t.appendChild(tb);
       j.users.forEach(function(u){
         var rs = el('select', { onchange: function(){ call('/admin/users/role', { email: u.email, role: rs.value }).then(function(){ toast('Role changed.'); loadUsers(); }).catch(function(e){ toast(e.message); loadUsers(); }); } },
@@ -439,7 +574,14 @@ function vAdmin(v){
           el('button', { class: 'btn small ghost', text: 'Temp password', onclick: function(){ if (!confirm('Give ' + u.email + ' a temporary password? Their current password stops working.')) return; call('/admin/users/temp-password', { email: u.email }).then(function(r){ showSecret(out, 'Temporary password for ' + u.email + ' — text it to them. They will choose their own at sign-in:', r.temp_password); window.scrollTo(0, 0); loadUsers(); }).catch(function(e){ toast(e.message); }); } }),
           u.email === S.me.email ? null : el('button', { class: 'btn small ghost', text: u.status === 'deactivated' ? 'Reactivate' : 'Deactivate', onclick: function(){ call('/admin/users/status', { email: u.email, status: u.status === 'deactivated' ? 'active' : 'deactivated' }).then(function(){ loadUsers(); }).catch(function(e){ toast(e.message); }); } }),
         ]);
+        var cb = el('input', { type: 'checkbox', 'aria-label': 'Commercial loans for ' + u.email });
+        cb.checked = u.role === 'admin' || !!u.commercial; cb.disabled = u.role === 'admin';
+        cb.addEventListener('change', function(){
+          if (cb.checked && !confirm('Let ' + u.email + ' open the Commercial loans page?')) { cb.checked = false; return; }
+          call('/admin/users/commercial', { email: u.email, allow: cb.checked }).then(function(){ toast(cb.checked ? 'Commercial loans turned on.' : 'Commercial loans turned off.'); loadUsers(); }).catch(function(e){ toast(e.message); loadUsers(); });
+        });
         tb.appendChild(el('tr', null, [el('td', { text: u.name || '' }), el('td', { text: u.email }), el('td', null, [rs]),
+          el('td', null, [el('label', { class: 'show', style: 'margin:0' }, [cb, u.role === 'admin' ? 'Always (Admin)' : (cb.checked ? 'On' : 'Off')])]),
           el('td', { text: u.status + (u.must_change ? ' · must choose password' : '') }), el('td', { text: u.last_login ? new Date(u.last_login).toLocaleString() : '—' }), el('td', null, [acts])]));
       });
       usersBox.appendChild(t);
